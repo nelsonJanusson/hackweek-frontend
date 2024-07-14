@@ -56,10 +56,10 @@ export function AssignmentCard({
       <h4>driver: {assignment.driverInfo ? assignment.driverInfo.name : ""}</h4>
       <h4>truck: {assignment.truckInfo ? assignment.truckInfo.type : ""}</h4>
       {assignment.legs.map((leg: LegInfo) => (
-        <>
+        <div key={leg.id}>
           <p>started at {leg.startLocation} </p>
           <p>ended at {leg.endLocation} </p>
-        </>
+        </div>
       ))}
 
       <form onSubmit={handleSubmit(onSubmit, onError)}>

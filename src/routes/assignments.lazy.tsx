@@ -12,19 +12,19 @@ export const Route = createLazyFileRoute("/assignments")({
 
 function Trucks() {
   const [assignments, setAssignments] = useState<AssignmentDto[]>([]);
+  const { register, handleSubmit } = useForm<AddAssignmentDto>();
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/assignment")
       .then((res) => res.data)
-      .then((res) => setAssignments(res));
+      .then((res) => setAssignments(res))
+      .catch((error) => {
+        console.log(error.response.data.error);
+      });
   }, []);
 
-  const { register, handleSubmit } = useForm<AddAssignmentDto>();
-
-  const onError = (errors) => console.error(errors);
-
-  const mutation = useMutation({
+  const addAssignment = useMutation({
     mutationFn: (e: AddAssignmentDto) => {
       return axios.post(
         "http://localhost:3000/api/assignment",
@@ -37,30 +37,44 @@ function Trucks() {
         }
       );
     },
+    onError: (e) => {
+      console.log(e.message);
+    },
     onSuccess: (e) => {
       setAssignments((prevAssignments) => [...prevAssignments, e.data]);
     },
   });
 
-  const onCreateTodo = (e: AddAssignmentDto) => {
-    mutation.mutate(e);
+  const onSubmit = (e: AddAssignmentDto) => {
+    addAssignment.mutate(e);
   };
 
   return (
     <div>
-      <h1>Assignments</h1>
+      <h1>Register new Assignment</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>
+          Product:
+          <input {...register("product", { required: true })} />
+        </label>
+        <label>
+          Pickuplocation:
+          <input {...register("pickupLocation", { required: true })} />
+        </label>
+        <label>
+          Destination:
+          <input {...register("destination", { required: true })} />
+        </label>
+        <input type="submit" />
+      </form>
+      <h1>Current Assignments</h1>
       {assignments.map((assignment: AssignmentDto) => (
         <AssignmentCard
+          key={assignment.id}
           assignment={assignment}
           setAssignments={setAssignments}
         ></AssignmentCard>
       ))}
-      <form onSubmit={handleSubmit(onCreateTodo, onError)}>
-        <input {...register("product", { required: true })} />
-        <input {...register("pickupLocation", { required: true })} />
-        <input {...register("destination", { required: true })} />
-        <input type="submit" />
-      </form>
     </div>
   );
 }

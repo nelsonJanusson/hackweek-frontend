@@ -24,7 +24,7 @@ function Trucks() {
       });
   }, []);
 
-  const createTruck = useMutation({
+  const addTruck = useMutation({
     mutationFn: (e: AddTruckDto) => {
       return axios.post("http://localhost:3000/api/truck", JSON.stringify(e), {
         headers: {
@@ -34,7 +34,6 @@ function Trucks() {
       });
     },
     onError: (e) => {
-      console.log("error worked");
       console.log(e.message);
     },
     onSuccess: (e) => {
@@ -43,7 +42,7 @@ function Trucks() {
   });
 
   const onSubmit = (e: AddTruckDto) => {
-    createTruck.mutate(e);
+    addTruck.mutate(e);
   };
 
   return (
@@ -62,7 +61,11 @@ function Trucks() {
       </form>
       <h1>Current fleet</h1>
       {trucks.map((truck: TruckDto) => (
-        <TruckCard truck={truck} setTrucks={setTrucks}></TruckCard>
+        <TruckCard
+          key={truck.id}
+          truck={truck}
+          setTrucks={setTrucks}
+        ></TruckCard>
       ))}
     </>
   );

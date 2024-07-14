@@ -12,19 +12,19 @@ export const Route = createLazyFileRoute("/drivers")({
 
 function Drivers() {
   const [drivers, setDrivers] = useState<DriverDto[]>([]);
+  const { register, handleSubmit } = useForm<AddDriverDto>();
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/driver")
       .then((res) => res.data)
-      .then((res) => setDrivers(res));
+      .then((res) => setDrivers(res))
+      .catch((error) => {
+        console.log(error.response.data.error);
+      });
   }, []);
 
-  const { register, handleSubmit } = useForm<AddDriverDto>();
-
-  const onError = (errors) => console.error(errors);
-
-  const mutation = useMutation({
+  const addDriver = useMutation({
     mutationFn: (e: AddDriverDto) => {
       return axios.post("http://localhost:3000/api/driver", JSON.stringify(e), {
         headers: {
@@ -33,26 +33,40 @@ function Drivers() {
         },
       });
     },
+    onError: (e) => {
+      console.log(e.message);
+    },
     onSuccess: (e) => {
       setDrivers((prevDrivers) => [...prevDrivers, e.data]);
     },
   });
 
-  const onCreateTodo = (e: AddDriverDto) => {
-    mutation.mutate(e);
+  const onSubmit = (e: AddDriverDto) => {
+    addDriver.mutate(e);
   };
 
   return (
     <div>
-      <h1>Drivers:</h1>
-      {drivers.map((driver: DriverDto) => (
-        <DriverCard driver={driver} setDrivers={setDrivers}></DriverCard>
-      ))}
-      <form onSubmit={handleSubmit(onCreateTodo, onError)}>
-        <input {...register("name", { required: true })} />
-        <input {...register("salary", { required: true })} />
+      <h1>Register New Driver</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>
+          Name:
+          <input {...register("name", { required: true })} />
+        </label>
+        <label>
+          Salary:
+          <input {...register("salary", { required: true })} />
+        </label>
         <input type="submit" />
       </form>
+      <h1>Current Drivers:</h1>
+      {drivers.map((driver: DriverDto) => (
+        <DriverCard
+          key={driver.id}
+          driver={driver}
+          setDrivers={setDrivers}
+        ></DriverCard>
+      ))}
     </div>
   );
 }
