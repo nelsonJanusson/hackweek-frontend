@@ -1,53 +1,53 @@
 export type Driver = {
   id: string;
-  name: String;
+  name: string;
   salary: number;
 };
 
 export type AddDriverDto = {
-  name: String;
+  name: string;
   salary: number;
 };
 
 export type Truck = {
-  id: String;
+  id: string;
   year: number;
-  type: String;
+  type: string;
 };
 
 export type AddTruckDto = {
   year: number;
-  type: String;
+  type: string;
 };
 
 export type Assignment = {
-  id: String;
+  id: string;
   legs: Leg[];
-  product: String;
-  pickupLocation: String;
-  destination: String;
+  product: string;
+  pickupLocation: string;
+  destination: string;
   driverDto: Driver;
   truckDto: Truck;
 };
 
 export type AddAssignmentDto = {
-  product: String;
-  pickupLocation: String;
-  destination: String;
+  product: string;
+  pickupLocation: string;
+  destination: string;
 };
 
 export type Leg = {
-  id: String;
+  id: string;
   startDate: Date;
   endDate: Date;
-  startLocation: String;
-  endLocation: String;
+  startLocation: string;
+  endLocation: string;
 };
 
 export type AddLegDto = {
-  assignmentId: String;
+  assignmentId: string;
   startDate: Date;
   endDate: Date;
-  startLocation: String;
-  endLocation: String;
+  startLocation: string;
+  endLocation: string;
 };

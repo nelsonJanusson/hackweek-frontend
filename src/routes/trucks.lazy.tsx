@@ -4,6 +4,7 @@ import { AddTruckDto, Truck } from "../types";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { TruckCard } from "../components/TruckCard";
 
 export const Route = createLazyFileRoute("/trucks")({
   component: Trucks,
@@ -45,7 +46,7 @@ function Trucks() {
     <div>
       <h1>Trucks</h1>
       {trucks.map((truck: Truck) => (
-        <p>{truck.type}</p>
+        <TruckCard truck={truck} setTrucks={setTrucks}></TruckCard>
       ))}
       <form onSubmit={handleSubmit(onCreateTodo, onError)}>
         <input {...register("year", { required: true })} />

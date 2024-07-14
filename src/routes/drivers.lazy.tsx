@@ -1,9 +1,10 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import axios from "axios";
 import { AddDriverDto, Driver } from "../types";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { DriverCard } from "../components/DriverCard";
 
 export const Route = createLazyFileRoute("/drivers")({
   component: Drivers,
@@ -20,25 +21,6 @@ function Drivers() {
   }, []);
 
   const { register, handleSubmit } = useForm<AddDriverDto>();
-
-  /*
-  const getDrivers = useQuery({
-    queryKey: ['posts'],
-    queryFn: async () => {
-      const response = await axios.get('http://localhost:3000/api/driver');
-      const data = await response.data;
-      return data;
-    }
-  })
-  */
-
-  /*
-
-
-
-   */
-  //    if( getDrivers.isLoading ) return ( <h1>Loading....</h1>)
-  //    if( getDrivers.isError ) return (<h1>Error loading data!!!</h1>)
 
   const onError = (errors: any) => console.error(errors);
 
@@ -62,9 +44,9 @@ function Drivers() {
 
   return (
     <div>
-      <h1>Drivers</h1>
+      <h1>Drivers:</h1>
       {drivers.map((driver: Driver) => (
-        <p>{driver.name}</p>
+        <DriverCard driver={driver} setDrivers={setDrivers}></DriverCard>
       ))}
       <form onSubmit={handleSubmit(onCreateTodo, onError)}>
         <input {...register("name", { required: true })} />

@@ -4,19 +4,20 @@ import { AddAssignmentDto, Assignment } from "../types";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { AssignmentCard } from "../components/AssignmentCard";
 
 export const Route = createLazyFileRoute("/assignments")({
   component: Trucks,
 });
 
 function Trucks() {
-  const [assignments, setAssignment] = useState<Assignment[]>([]);
+  const [assignments, setAssignments] = useState<Assignment[]>([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/assignment")
       .then((res) => res.data)
-      .then((res) => setAssignment(res));
+      .then((res) => setAssignments(res));
   }, []);
 
   const { register, handleSubmit } = useForm<AddAssignmentDto>();
@@ -37,7 +38,7 @@ function Trucks() {
       );
     },
     onSuccess: (e) => {
-      setAssignment((prevAssignments) => [...prevAssignments, e.data]);
+      setAssignments((prevAssignments) => [...prevAssignments, e.data]);
     },
   });
 
@@ -47,9 +48,12 @@ function Trucks() {
 
   return (
     <div>
-      <h1>Trucks</h1>
+      <h1>Assignments</h1>
       {assignments.map((assignment: Assignment) => (
-        <p>{assignment.product}</p>
+        <AssignmentCard
+          assignment={assignment}
+          setAssignments={setAssignments}
+        ></AssignmentCard>
       ))}
       <form onSubmit={handleSubmit(onCreateTodo, onError)}>
         <input {...register("product", { required: true })} />
