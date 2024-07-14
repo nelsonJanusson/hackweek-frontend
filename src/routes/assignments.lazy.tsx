@@ -12,7 +12,7 @@ export const Route = createLazyFileRoute("/assignments")({
 
 function Trucks() {
   const [assignments, setAssignments] = useState<AssignmentDto[]>([]);
-  const { register, handleSubmit } = useForm<AddAssignmentDto>();
+  const { register, handleSubmit, reset } = useForm<AddAssignmentDto>();
 
   useEffect(() => {
     axios
@@ -42,6 +42,7 @@ function Trucks() {
     },
     onSuccess: (e) => {
       setAssignments((prevAssignments) => [...prevAssignments, e.data]);
+      reset();
     },
   });
 

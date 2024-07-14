@@ -12,7 +12,7 @@ export const Route = createLazyFileRoute("/drivers")({
 
 function Drivers() {
   const [drivers, setDrivers] = useState<DriverDto[]>([]);
-  const { register, handleSubmit } = useForm<AddDriverDto>();
+  const { register, handleSubmit, reset } = useForm<AddDriverDto>();
 
   useEffect(() => {
     axios
@@ -38,6 +38,7 @@ function Drivers() {
     },
     onSuccess: (e) => {
       setDrivers((prevDrivers) => [...prevDrivers, e.data]);
+      reset();
     },
   });
 
