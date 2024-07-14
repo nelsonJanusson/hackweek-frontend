@@ -59,18 +59,19 @@ export function AssignmentCard({
           <p>ended at {leg.endLocation} </p>
         </div>
       ))}
-
-      <form onSubmit={handleSubmit(onSubmit, onError)}>
-        <label>
-          Truck:
-          <input {...register("truck", { required: true })} />
-        </label>
-        <label>
-          Driver:
-          <input {...register("driver", { required: true })} />
-        </label>
-        <input type="submit" />
-      </form>
+      {assignment.status == "Unassigned" && (
+        <form onSubmit={handleSubmit(onSubmit, onError)}>
+          <label>
+            Truck:
+            <input {...register("truck", { required: true })} />
+          </label>
+          <label>
+            Driver:
+            <input {...register("driver", { required: true })} />
+          </label>
+          <input type="submit" />
+        </form>
+      )}
       <button onClick={() => removeAssignment.mutate()}>delete</button>
     </div>
   );
