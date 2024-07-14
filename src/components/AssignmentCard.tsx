@@ -11,7 +11,7 @@ export function AssignmentCard({
   setAssignments,
 }: {
   assignment: AssignmentDto;
-  setAssignments: (assignments) => void;
+  setAssignments: React.Dispatch<React.SetStateAction<AssignmentDto[]>>;
 }) {
   const removeAssignment = useMutation({
     mutationFn: () => {
@@ -20,7 +20,6 @@ export function AssignmentCard({
       );
     },
     onSuccess: () => {
-      console.log("sucess1");
       setAssignments((prevAssignments: AssignmentDto[]) =>
         prevAssignments.filter(
           (prevAssignment) => prevAssignment.id !== assignment.id
@@ -28,13 +27,12 @@ export function AssignmentCard({
       );
     },
     onError: (error) => {
-      console.log("error");
       console.log(error.message);
     },
   });
 
   const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit = (data: FormValues, e) => {
+  const onSubmit = (data: FormValues) => {
     console.log("lesgo");
     axios.put(
       "http://localhost:3000/api/assignment/" +
@@ -63,11 +61,16 @@ export function AssignmentCard({
       ))}
 
       <form onSubmit={handleSubmit(onSubmit, onError)}>
-        <input {...register("truck", { required: true })} />
-        <input {...register("driver", { required: true })} />
+        <label>
+          Truck:
+          <input {...register("truck", { required: true })} />
+        </label>
+        <label>
+          Driver:
+          <input {...register("driver", { required: true })} />
+        </label>
         <input type="submit" />
       </form>
-
       <button onClick={() => removeAssignment.mutate()}>delete</button>
     </div>
   );

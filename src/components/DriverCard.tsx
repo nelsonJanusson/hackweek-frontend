@@ -7,20 +7,18 @@ export function DriverCard({
   setDrivers,
 }: {
   driver: DriverDto;
-  setDrivers: (prevDrivers) => void;
+  setDrivers: React.Dispatch<React.SetStateAction<DriverDto[]>>;
 }) {
   const removeDriver = useMutation({
     mutationFn: () => {
       return axios.delete("http://localhost:3000/api/driver/" + driver.id);
     },
     onSuccess: () => {
-      console.log("sucess1");
       setDrivers((prevDrivers: DriverDto[]) =>
         prevDrivers.filter((prevDriver) => prevDriver.id !== driver.id)
       );
     },
     onError: (error) => {
-      console.log("error");
       console.log(error.message);
     },
   });

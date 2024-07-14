@@ -7,20 +7,18 @@ export function TruckCard({
   setTrucks,
 }: {
   truck: TruckDto;
-  setTrucks: (input) => void;
+  setTrucks: React.Dispatch<React.SetStateAction<TruckDto[]>>;
 }) {
   const removeTruck = useMutation({
     mutationFn: () => {
       return axios.delete("http://localhost:3000/api/truck/" + truck.id);
     },
     onSuccess: () => {
-      console.log("sucess1");
       setTrucks((prevTrucks: TruckDto[]) =>
         prevTrucks.filter((prevTruck) => prevTruck.id !== truck.id)
       );
     },
     onError: (error) => {
-      console.log("error");
       console.log(error.message);
     },
   });
