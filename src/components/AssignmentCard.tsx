@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Assignment, Leg } from "../types";
+import { AssignmentDto, LegInfo } from "../types";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 type FormValues = {
@@ -10,8 +10,8 @@ export function AssignmentCard({
   assignment,
   setAssignments,
 }: {
-  assignment: Assignment;
-  setAssignments: (assignments: any) => void;
+  assignment: AssignmentDto;
+  setAssignments: (assignments) => void;
 }) {
   const removeAssignment = useMutation({
     mutationFn: () => {
@@ -21,7 +21,7 @@ export function AssignmentCard({
     },
     onSuccess: () => {
       console.log("sucess1");
-      setAssignments((prevAssignments: Assignment[]) =>
+      setAssignments((prevAssignments: AssignmentDto[]) =>
         prevAssignments.filter(
           (prevAssignment) => prevAssignment.id !== assignment.id
         )
@@ -32,20 +32,6 @@ export function AssignmentCard({
       console.log(error.message);
     },
   });
-
-  /*const { register, handleSubmit } = useForm<FormValues>();
-  const updateAssignment = useMutation({
-    mutationFn: (e) => {
-      return axios.put(
-        "http://localhost:3000/api/assignment/"+assignment.id+"/"+e.truck+"/"+e.driver,
-        
-      );
-    },
-    onSuccess: (e) => {
-      console.log(e);
-    },
-  });
-  */
 
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit = (data: FormValues, e) => {
@@ -67,9 +53,9 @@ export function AssignmentCard({
       <h4>PickupLocation: {assignment.pickupLocation}</h4>
       <h4>Destination: {assignment.destination}</h4>
       <h4>product: {assignment.product}</h4>
-      <h4>driver: {assignment.driverDto ? assignment.driverDto.name : ""}</h4>
-      <h4>truck: {assignment.truckDto ? assignment.truckDto.type : ""}</h4>
-      {assignment.legs.map((leg: Leg) => (
+      <h4>driver: {assignment.driverInfo ? assignment.driverInfo.name : ""}</h4>
+      <h4>truck: {assignment.truckInfo ? assignment.truckInfo.type : ""}</h4>
+      {assignment.legs.map((leg: LegInfo) => (
         <>
           <p>started at {leg.startLocation} </p>
           <p>ended at {leg.endLocation} </p>

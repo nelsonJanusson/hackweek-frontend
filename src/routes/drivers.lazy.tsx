@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import axios from "axios";
-import { AddDriverDto, Driver } from "../types";
+import { AddDriverDto, DriverDto } from "../types";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { DriverCard } from "../components/DriverCard";
@@ -11,7 +11,7 @@ export const Route = createLazyFileRoute("/drivers")({
 });
 
 function Drivers() {
-  const [drivers, setDrivers] = useState<Driver[]>([]);
+  const [drivers, setDrivers] = useState<DriverDto[]>([]);
 
   useEffect(() => {
     axios
@@ -22,7 +22,7 @@ function Drivers() {
 
   const { register, handleSubmit } = useForm<AddDriverDto>();
 
-  const onError = (errors: any) => console.error(errors);
+  const onError = (errors) => console.error(errors);
 
   const mutation = useMutation({
     mutationFn: (e: AddDriverDto) => {
@@ -45,7 +45,7 @@ function Drivers() {
   return (
     <div>
       <h1>Drivers:</h1>
-      {drivers.map((driver: Driver) => (
+      {drivers.map((driver: DriverDto) => (
         <DriverCard driver={driver} setDrivers={setDrivers}></DriverCard>
       ))}
       <form onSubmit={handleSubmit(onCreateTodo, onError)}>

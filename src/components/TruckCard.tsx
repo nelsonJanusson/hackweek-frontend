@@ -1,21 +1,21 @@
 import axios from "axios";
-import { Truck } from "../types";
+import { TruckDto } from "../types";
 import { useMutation } from "@tanstack/react-query";
 
 export function TruckCard({
   truck,
   setTrucks,
 }: {
-  truck: Truck;
-  setTrucks: (input: any) => void;
+  truck: TruckDto;
+  setTrucks: (input) => void;
 }) {
-  const removeDriver = useMutation({
+  const removeTruck = useMutation({
     mutationFn: () => {
-      return axios.delete("http://localhost:3000/api/driver/" + truck.id);
+      return axios.delete("http://localhost:3000/api/truck/" + truck.id);
     },
     onSuccess: () => {
       console.log("sucess1");
-      setTrucks((prevTrucks: Truck[]) =>
+      setTrucks((prevTrucks: TruckDto[]) =>
         prevTrucks.filter((prevTruck) => prevTruck.id !== truck.id)
       );
     },
@@ -29,7 +29,7 @@ export function TruckCard({
     <div>
       <h4>Type: {truck.type}</h4>
       <h4>Year: {truck.year}</h4>
-      <button onClick={() => removeDriver.mutate()}>delete</button>
+      <button onClick={() => removeTruck.mutate()}>Remove Truck</button>
     </div>
   );
 }

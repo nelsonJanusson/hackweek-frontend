@@ -1,7 +1,16 @@
-export type Driver = {
+export type DriverDto = {
   id: string;
   name: string;
   salary: number;
+  assignments: AssignmentDto[];
+  status: string;
+};
+
+export type DriverInfo = {
+  id: string;
+  name: string;
+  salary: number;
+  status: string;
 };
 
 export type AddDriverDto = {
@@ -9,10 +18,19 @@ export type AddDriverDto = {
   salary: number;
 };
 
-export type Truck = {
+export type TruckDto = {
   id: string;
   year: number;
   type: string;
+  status: string;
+  assignments: AssignmentDto[];
+};
+
+export type TruckInfo = {
+  id: string;
+  year: number;
+  type: string;
+  status: string;
 };
 
 export type AddTruckDto = {
@@ -20,23 +38,7 @@ export type AddTruckDto = {
   type: string;
 };
 
-export type Assignment = {
-  id: string;
-  legs: Leg[];
-  product: string;
-  pickupLocation: string;
-  destination: string;
-  driverDto: Driver;
-  truckDto: Truck;
-};
-
-export type AddAssignmentDto = {
-  product: string;
-  pickupLocation: string;
-  destination: string;
-};
-
-export type Leg = {
+export type LegInfo = {
   id: string;
   startDate: Date;
   endDate: Date;
@@ -45,9 +47,25 @@ export type Leg = {
 };
 
 export type AddLegDto = {
-  assignmentId: string;
   startDate: Date;
   endDate: Date;
   startLocation: string;
   endLocation: string;
+};
+
+export type AssignmentDto = {
+  id: string;
+  legs: LegInfo[];
+  product: string;
+  pickupLocation: string;
+  destination: string;
+  driverInfo: DriverInfo;
+  truckInfo: TruckInfo;
+  status: string;
+};
+
+export type AddAssignmentDto = {
+  product: string;
+  pickupLocation: string;
+  destination: string;
 };

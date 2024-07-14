@@ -1,6 +1,6 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import axios from "axios";
-import { AddAssignmentDto, Assignment } from "../types";
+import { AddAssignmentDto, AssignmentDto } from "../types";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
@@ -11,7 +11,7 @@ export const Route = createLazyFileRoute("/assignments")({
 });
 
 function Trucks() {
-  const [assignments, setAssignments] = useState<Assignment[]>([]);
+  const [assignments, setAssignments] = useState<AssignmentDto[]>([]);
 
   useEffect(() => {
     axios
@@ -22,7 +22,7 @@ function Trucks() {
 
   const { register, handleSubmit } = useForm<AddAssignmentDto>();
 
-  const onError = (errors: any) => console.error(errors);
+  const onError = (errors) => console.error(errors);
 
   const mutation = useMutation({
     mutationFn: (e: AddAssignmentDto) => {
@@ -49,7 +49,7 @@ function Trucks() {
   return (
     <div>
       <h1>Assignments</h1>
-      {assignments.map((assignment: Assignment) => (
+      {assignments.map((assignment: AssignmentDto) => (
         <AssignmentCard
           assignment={assignment}
           setAssignments={setAssignments}

@@ -1,13 +1,13 @@
 import axios from "axios";
-import { Driver } from "../types";
+import { DriverDto } from "../types";
 import { useMutation } from "@tanstack/react-query";
 
 export function DriverCard({
   driver,
   setDrivers,
 }: {
-  driver: Driver;
-  setDrivers: (prevDrivers: any) => void;
+  driver: DriverDto;
+  setDrivers: (prevDrivers) => void;
 }) {
   const removeDriver = useMutation({
     mutationFn: () => {
@@ -15,7 +15,7 @@ export function DriverCard({
     },
     onSuccess: () => {
       console.log("sucess1");
-      setDrivers((prevDrivers: Driver[]) =>
+      setDrivers((prevDrivers: DriverDto[]) =>
         prevDrivers.filter((prevDriver) => prevDriver.id !== driver.id)
       );
     },
