@@ -62,10 +62,26 @@ export type AssignmentDto = {
   driverInfo: DriverInfo;
   truckInfo: TruckInfo;
   status: string;
+  customerInfo: CustomerInfo;
 };
 
 export type AddAssignmentDto = {
   product: string;
   pickupLocation: string;
   destination: string;
+};
+
+export type CustomerDto = {
+  id: string;
+  name: string;
+  assignments: AssignmentDto[];
+};
+
+export type CustomerInfo = {
+  id: string;
+  name: string;
+};
+
+export type AddCustomerDto = {
+  name: string;
 };
