@@ -59,12 +59,16 @@ function Trucks() {
       <h1>Register New Truck</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
-          Type:
-          <input {...register("type", { required: true })} />
+          Payload:
+          <input {...register("payload", { required: true })} />
         </label>
         <label>
-          Year:
-          <input {...register("year", { required: true })} />
+          Weight:
+          <input {...register("weight", { required: true })} />
+        </label>
+        <label>
+          Height:
+          <input {...register("height", { required: true })} />
         </label>
         <input type="submit" />
       </form>
