@@ -58,48 +58,47 @@ export function AssignmentCard({
     },
   });
 
-  const onClick = () => setSelected(() => !selected);
-
   return (
-    <div
-      className="mainbody"
-      onClick={(e) => e.currentTarget === e.target && onClick()}
-    >
-      <h4>PickupLocation: {assignment.pickupLocation}</h4>
-      <h4>Destination: {assignment.destination}</h4>
-      <h4>product: {assignment.product}</h4>
-      {assignment.status == "Unassigned" && selected && (
-        <AssignAssignmentForm
-          assignment={assignment}
-          setAssignments={setAssignments}
-        ></AssignAssignmentForm>
-      )}
+    <>
+      <div className="mainbody" onClick={() => setSelected(!selected)}>
+        <h4>PickupLocation: {assignment.pickupLocation}</h4>
+        <h4>Destination: {assignment.destination}</h4>
+        <h4>product: {assignment.product}</h4>
 
-      {(assignment.status == "Active" || assignment.status == "Finished") && (
-        <>
-          <h4>driver: {assignment.driverInfo.name}</h4>
-          <h4>truck: {assignment.truckInfo.type}</h4>
-          <h4>legs:</h4>
-          {assignment.legs.map((leg: LegInfo) => (
-            <div key={leg.id}>
-              <p>started at {leg.startLocation} </p>
-              <p>ended at {leg.endLocation} </p>
-            </div>
-          ))}
-        </>
-      )}
-      {assignment.status == "Active" && selected && (
-        <>
-          <AddLegForm
+        {(assignment.status == "Active" || assignment.status == "Finished") && (
+          <>
+            <h4>driver: {assignment.driverInfo.name}</h4>
+            <h4>truck: {assignment.truckInfo.type}</h4>
+            <h4>legs:</h4>
+            {assignment.legs.map((leg: LegInfo) => (
+              <div key={leg.id}>
+                <p>started at {leg.startLocation} </p>
+                <p>ended at {leg.endLocation} </p>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+      <div className="extra">
+        {assignment.status == "Unassigned" && selected && (
+          <AssignAssignmentForm
             assignment={assignment}
             setAssignments={setAssignments}
-          ></AddLegForm>
-          <button onClick={() => finnishAssignment.mutate()}>Finnish</button>
-        </>
-      )}
-      {selected && (
-        <button onClick={() => removeAssignment.mutate()}>delete</button>
-      )}
-    </div>
+          ></AssignAssignmentForm>
+        )}
+        {assignment.status == "Active" && selected && (
+          <>
+            <AddLegForm
+              assignment={assignment}
+              setAssignments={setAssignments}
+            ></AddLegForm>
+            <button onClick={() => finnishAssignment.mutate()}>Finnish</button>
+          </>
+        )}
+        {selected && (
+          <button onClick={() => removeAssignment.mutate()}>delete</button>
+        )}
+      </div>
+    </>
   );
 }
