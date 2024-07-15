@@ -4,21 +4,29 @@ import { AddTruckDto, TruckDto } from "../types";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { TruckCard } from "../components/TruckCard";
+import { TruckGallery } from "../components/TruckGallery";
 
 export const Route = createLazyFileRoute("/trucks")({
   component: Trucks,
 });
 
 function Trucks() {
-  const [trucks, setTrucks] = useState<TruckDto[]>([]);
+  const [assignedTrucks, setAssignedTrucks] = useState<TruckDto[]>([]);
+  const [unassignedTrucks, setUnassignedTrucks] = useState<TruckDto[]>([]);
   const { register, handleSubmit, reset } = useForm<AddTruckDto>();
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/truck")
+      .get("http://localhost:3000/api/truck/unassigned")
       .then((res) => res.data)
-      .then((res) => setTrucks(res))
+      .then((res) => setUnassignedTrucks(res))
+      .catch((error) => {
+        console.log(error.response.data.error);
+      });
+    axios
+      .get("http://localhost:3000/api/truck/assigned")
+      .then((res) => res.data)
+      .then((res) => setAssignedTrucks(res))
       .catch((error) => {
         console.log(error.response.data.error);
       });
@@ -37,7 +45,7 @@ function Trucks() {
       console.log(e.message);
     },
     onSuccess: (e) => {
-      setTrucks((prevTrucks) => [...prevTrucks, e.data]);
+      setUnassignedTrucks((prevTrucks) => [...prevTrucks, e.data]);
       reset();
     },
   });
@@ -60,14 +68,18 @@ function Trucks() {
         </label>
         <input type="submit" />
       </form>
-      <h1>Current fleet</h1>
-      {trucks.map((truck: TruckDto) => (
-        <TruckCard
-          key={truck.id}
-          truck={truck}
-          setTrucks={setTrucks}
-        ></TruckCard>
-      ))}
+
+      <h1>Current fleet assigned</h1>
+      <TruckGallery
+        trucks={assignedTrucks}
+        setTrucks={setAssignedTrucks}
+      ></TruckGallery>
+
+      <h1>Current fleet unassigned</h1>
+      <TruckGallery
+        trucks={unassignedTrucks}
+        setTrucks={setUnassignedTrucks}
+      ></TruckGallery>
     </>
   );
 }

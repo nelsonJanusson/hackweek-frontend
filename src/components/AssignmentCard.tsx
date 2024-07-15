@@ -35,7 +35,7 @@ export function AssignmentCard({
   const onSubmit = (data: FormValues) => {
     console.log("lesgo");
     axios.put(
-      "http://localhost:3000/api/assignment/" +
+      "http://localhost:3000/api/assignment/assign/" +
         assignment.id +
         "/" +
         data.truck +

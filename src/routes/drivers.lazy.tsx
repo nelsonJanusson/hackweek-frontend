@@ -4,21 +4,29 @@ import axios from "axios";
 import { AddDriverDto, DriverDto } from "../types";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { DriverCard } from "../components/DriverCard";
+import { DriverGallery } from "../components/DriverGallery";
 
 export const Route = createLazyFileRoute("/drivers")({
   component: Drivers,
 });
 
 function Drivers() {
-  const [drivers, setDrivers] = useState<DriverDto[]>([]);
+  const [assignedDrivers, setAssignedDrivers] = useState<DriverDto[]>([]);
+  const [unassignedDrivers, setUnassignedDrivers] = useState<DriverDto[]>([]);
   const { register, handleSubmit, reset } = useForm<AddDriverDto>();
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/driver")
+      .get("http://localhost:3000/api/driver/unassigned")
       .then((res) => res.data)
-      .then((res) => setDrivers(res))
+      .then((res) => setUnassignedDrivers(res))
+      .catch((error) => {
+        console.log(error.response.data.error);
+      });
+    axios
+      .get("http://localhost:3000/api/driver/assigned")
+      .then((res) => res.data)
+      .then((res) => setAssignedDrivers(res))
       .catch((error) => {
         console.log(error.response.data.error);
       });
@@ -37,7 +45,7 @@ function Drivers() {
       console.log(e.message);
     },
     onSuccess: (e) => {
-      setDrivers((prevDrivers) => [...prevDrivers, e.data]);
+      setUnassignedDrivers((prevDrivers) => [...prevDrivers, e.data]);
       reset();
     },
   });
@@ -60,14 +68,16 @@ function Drivers() {
         </label>
         <input type="submit" />
       </form>
-      <h1>Current Drivers:</h1>
-      {drivers.map((driver: DriverDto) => (
-        <DriverCard
-          key={driver.id}
-          driver={driver}
-          setDrivers={setDrivers}
-        ></DriverCard>
-      ))}
+      <h1>Current Assigned Drivers:</h1>
+      <DriverGallery
+        drivers={assignedDrivers}
+        setDrivers={setAssignedDrivers}
+      ></DriverGallery>
+      <h1>Current Unassigned Drivers:</h1>
+      <DriverGallery
+        drivers={unassignedDrivers}
+        setDrivers={setUnassignedDrivers}
+      ></DriverGallery>
     </div>
   );
 }
