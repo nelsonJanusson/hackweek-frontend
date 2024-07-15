@@ -7,10 +7,10 @@ import { useMutation } from "@tanstack/react-query";
 import { AssignmentGallery } from "../components/AssignmentGallery";
 
 export const Route = createLazyFileRoute("/assignments")({
-  component: Trucks,
+  component: Assignments,
 });
 
-function Trucks() {
+function Assignments() {
   const [assignments, setAssignments] = useState<AssignmentDto[]>([]);
   const { register, handleSubmit, reset } = useForm<AddAssignmentDto>();
 

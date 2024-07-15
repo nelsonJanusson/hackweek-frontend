@@ -41,6 +41,7 @@ export function DriverCard({
           onClick={() => setSelected(!selected)}
         >
           <h3>Assignment</h3>
+          <h4>Assignment id: {currentAssignment.id}</h4>
           <h4>Product: {currentAssignment.product}</h4>
           <h4>Pickup: {currentAssignment.pickupLocation}</h4>
           <h4>Destination: {currentAssignment.destination}</h4>
@@ -63,6 +64,7 @@ export function DriverCard({
             .map((assignment: AssignmentDto) => (
               <div className="assignment" key={assignment.id}>
                 <h3>Assignment</h3>
+                <h4>Assignment id: {assignment.id}</h4>
                 <h4>Product: {assignment.product}</h4>
                 <h4>Pickup: {assignment.pickupLocation}</h4>
                 <h4>Destination: {assignment.destination}</h4>
