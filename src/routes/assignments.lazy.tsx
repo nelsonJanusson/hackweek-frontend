@@ -4,7 +4,7 @@ import { AddAssignmentDto, AssignmentDto } from "../types";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { AssignmentCard } from "../components/AssignmentCard";
+import { AssignmentGallery } from "../components/AssignmentGallery";
 
 export const Route = createLazyFileRoute("/assignments")({
   component: Trucks,
@@ -68,14 +68,23 @@ function Trucks() {
         </label>
         <input type="submit" />
       </form>
-      <h1>Current Assignments</h1>
-      {assignments.map((assignment: AssignmentDto) => (
-        <AssignmentCard
-          key={assignment.id}
-          assignment={assignment}
-          setAssignments={setAssignments}
-        ></AssignmentCard>
-      ))}
+      <h1>Active Assignments</h1>
+      <AssignmentGallery
+        assignments={assignments.filter((e) => e.status == "Active")}
+        setAssignments={setAssignments}
+      ></AssignmentGallery>
+
+      <h1>Unassigned Assignments</h1>
+      <AssignmentGallery
+        assignments={assignments.filter((e) => e.status == "Unassigned")}
+        setAssignments={setAssignments}
+      ></AssignmentGallery>
+
+      <h1>Finished Assignments</h1>
+      <AssignmentGallery
+        assignments={assignments.filter((e) => e.status == "Finished")}
+        setAssignments={setAssignments}
+      ></AssignmentGallery>
     </div>
   );
 }

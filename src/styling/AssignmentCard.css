@@ -1,0 +1,6 @@
+.mainbody {
+  border: solid black 1px;
+}
+.mainbody > * {
+  width: "fit-content";
+}

@@ -1,0 +1,31 @@
+.unassigned-driver_ {
+  background-color: white;
+  border: solid black 1px;
+}
+.unassigned-driver_selected {
+  background-color: gray;
+  border: solid black 1px;
+}
+.unassigned-driver_ > * {
+  width: "fit-content";
+}
+
+.unassigned-driver_selected > * {
+  width: "fit-content";
+}
+
+.unassigned-truck_ {
+  background-color: white;
+  border: solid black 1px;
+}
+.unassigned-truck_selected {
+  background-color: gray;
+  border: solid black 1px;
+}
+.unassigned-truck_ > * {
+  width: "fit-content";
+}
+
+.unassigned-truck_selected > * {
+  width: "fit-content";
+}

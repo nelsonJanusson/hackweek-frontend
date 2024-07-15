@@ -1,13 +1,11 @@
 import axios from "axios";
 import { AssignmentDto, LegInfo } from "../types";
 import { useMutation } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
 import { AddLegForm } from "./AddLegForm";
+import "../styling/AssignmentCard.css";
+import { useState } from "react";
+import { AssignAssignmentForm } from "./AssignAssignmentForm";
 
-type FormValues = {
-  truck: string;
-  driver: string;
-};
 export function AssignmentCard({
   assignment,
   setAssignments,
@@ -15,6 +13,8 @@ export function AssignmentCard({
   assignment: AssignmentDto;
   setAssignments: React.Dispatch<React.SetStateAction<AssignmentDto[]>>;
 }) {
+  const [selected, setSelected] = useState<boolean>(false);
+
   const removeAssignment = useMutation({
     mutationFn: () => {
       return axios.delete(
@@ -58,61 +58,23 @@ export function AssignmentCard({
     },
   });
 
-  const assignAssignment = useMutation({
-    mutationFn: (e: FormValues) => {
-      return axios.post(
-        "http://localhost:3000/api/assignment/assign/" +
-          assignment.id +
-          "/" +
-          e.truck +
-          "/" +
-          e.driver,
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-          },
-        }
-      );
-    },
-    onError: (e) => {
-      console.log(e.message);
-    },
-    onSuccess: (e) => {
-      setAssignments((prevAssignments: AssignmentDto[]) =>
-        prevAssignments.filter(
-          (prevAssignment) => prevAssignment.id !== assignment.id
-        )
-      );
-      setAssignments((prevAssignments) => [...prevAssignments, e.data]);
-    },
-  });
-
-  const { register, handleSubmit } = useForm<FormValues>();
-
-  const onSubmit = (data: FormValues) => {
-    assignAssignment.mutate(data);
-  };
+  const onClick = () => setSelected(() => !selected);
 
   return (
-    <div>
+    <div
+      className="mainbody"
+      onClick={(e) => e.currentTarget === e.target && onClick()}
+    >
       <h4>PickupLocation: {assignment.pickupLocation}</h4>
       <h4>Destination: {assignment.destination}</h4>
       <h4>product: {assignment.product}</h4>
-      {assignment.status == "Unassigned" && (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label>
-            Truck:
-            <input {...register("truck", { required: true })} />
-          </label>
-          <label>
-            Driver:
-            <input {...register("driver", { required: true })} />
-          </label>
-          <input type="submit" />
-        </form>
+      {assignment.status == "Unassigned" && selected && (
+        <AssignAssignmentForm
+          assignment={assignment}
+          setAssignments={setAssignments}
+        ></AssignAssignmentForm>
       )}
-      ;
+
       {(assignment.status == "Active" || assignment.status == "Finished") && (
         <>
           <h4>driver: {assignment.driverInfo.name}</h4>
@@ -126,7 +88,7 @@ export function AssignmentCard({
           ))}
         </>
       )}
-      {assignment.status == "Active" && (
+      {assignment.status == "Active" && selected && (
         <>
           <AddLegForm
             assignment={assignment}
@@ -135,7 +97,9 @@ export function AssignmentCard({
           <button onClick={() => finnishAssignment.mutate()}>Finnish</button>
         </>
       )}
-      <button onClick={() => removeAssignment.mutate()}>delete</button>
+      {selected && (
+        <button onClick={() => removeAssignment.mutate()}>delete</button>
+      )}
     </div>
   );
 }
