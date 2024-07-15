@@ -30,11 +30,23 @@ export function AssignmentCard({
       console.log(error.message);
     },
   });
+  const finnishAssignment = useMutation({
+    mutationFn: () => {
+      return axios.post(
+        "http://localhost:3000/api/assignment/finnish/" + assignment.id
+      );
+    },
+    onSuccess: () => {
+      console.log("yipieeeeeeee");
+    },
+    onError: (error) => {
+      console.log(error.message);
+    },
+  });
 
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit = (data: FormValues) => {
-    console.log("lesgo");
-    axios.put(
+    axios.post(
       "http://localhost:3000/api/assignment/assign/" +
         assignment.id +
         "/" +
@@ -42,7 +54,6 @@ export function AssignmentCard({
         "/" +
         data.driver
     );
-    console.log("lesgo2");
   };
   const onError = (errors, e) => console.log(errors, e);
 
@@ -51,14 +62,6 @@ export function AssignmentCard({
       <h4>PickupLocation: {assignment.pickupLocation}</h4>
       <h4>Destination: {assignment.destination}</h4>
       <h4>product: {assignment.product}</h4>
-      <h4>driver: {assignment.driverInfo ? assignment.driverInfo.name : ""}</h4>
-      <h4>truck: {assignment.truckInfo ? assignment.truckInfo.type : ""}</h4>
-      {assignment.legs.map((leg: LegInfo) => (
-        <div key={leg.id}>
-          <p>started at {leg.startLocation} </p>
-          <p>ended at {leg.endLocation} </p>
-        </div>
-      ))}
       {assignment.status == "Unassigned" && (
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           <label>
@@ -71,6 +74,23 @@ export function AssignmentCard({
           </label>
           <input type="submit" />
         </form>
+      )}
+      ;
+      {(assignment.status == "Active" || assignment.status == "Finished") && (
+        <div>
+          <h4>driver: {assignment.driverInfo.name}</h4>
+          <h4>truck: {assignment.truckInfo.type}</h4>
+          <h4>legs:</h4>
+          {assignment.legs.map((leg: LegInfo) => (
+            <div key={leg.id}>
+              <p>started at {leg.startLocation} </p>
+              <p>ended at {leg.endLocation} </p>
+            </div>
+          ))}
+        </div>
+      )}
+      {assignment.status == "Active" && (
+        <button onClick={() => finnishAssignment.mutate()}>Finnish</button>
       )}
       <button onClick={() => removeAssignment.mutate()}>delete</button>
     </div>
