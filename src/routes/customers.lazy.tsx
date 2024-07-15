@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AddCustomerDto, CustomerDto } from "../types";
+import { CustomerGallery } from "../components/CustomerGallery";
 
 export const Route = createLazyFileRoute("/customers")({
   component: Customers,
