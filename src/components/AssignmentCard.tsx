@@ -2,6 +2,8 @@ import axios from "axios";
 import { AssignmentDto, LegInfo } from "../types";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import { AddLegForm } from "./AddLegForm";
+
 type FormValues = {
   truck: string;
   driver: string;
@@ -87,6 +89,7 @@ export function AssignmentCard({
   });
 
   const { register, handleSubmit } = useForm<FormValues>();
+
   const onSubmit = (data: FormValues) => {
     assignAssignment.mutate(data);
   };
@@ -124,7 +127,13 @@ export function AssignmentCard({
         </>
       )}
       {assignment.status == "Active" && (
-        <button onClick={() => finnishAssignment.mutate()}>Finnish</button>
+        <>
+          <AddLegForm
+            assignment={assignment}
+            setAssignments={setAssignments}
+          ></AddLegForm>
+          <button onClick={() => finnishAssignment.mutate()}>Finnish</button>
+        </>
       )}
       <button onClick={() => removeAssignment.mutate()}>delete</button>
     </div>
