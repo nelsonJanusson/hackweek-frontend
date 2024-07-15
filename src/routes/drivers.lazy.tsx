@@ -62,10 +62,6 @@ function Drivers() {
           Name:
           <input {...register("name", { required: true })} />
         </label>
-        <label>
-          Salary:
-          <input {...register("salary", { required: true })} />
-        </label>
         <input type="submit" />
       </form>
       <h1>Current Assigned Drivers:</h1>

@@ -34,7 +34,6 @@ export function DriverCard({
     <>
       <div className="mainbody" onClick={() => setSelected(!selected)}>
         <h4>Name: {driver.name}</h4>
-        <h4>Salary: {driver.salary}</h4>
       </div>
       {currentAssignment && (
         <div

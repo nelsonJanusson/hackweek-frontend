@@ -1,7 +1,6 @@
 export type DriverDto = {
   id: string;
   name: string;
-  salary: number;
   assignments: AssignmentDto[];
   status: string;
 };
@@ -9,13 +8,11 @@ export type DriverDto = {
 export type DriverInfo = {
   id: string;
   name: string;
-  salary: number;
   status: string;
 };
 
 export type AddDriverDto = {
   name: string;
-  salary: number;
 };
 
 export type TruckDto = {

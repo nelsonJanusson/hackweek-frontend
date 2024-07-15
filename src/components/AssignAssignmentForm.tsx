@@ -75,7 +75,6 @@ export function AssignAssignmentForm({
           }
         >
           <h4>Name: {driver.name}</h4>
-          <h4>Salary: {driver.salary}</h4>
         </div>
       ))}
 
