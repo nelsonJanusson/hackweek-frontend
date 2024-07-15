@@ -33,10 +33,10 @@ export function AssignmentCard({
     },
   });
 
-  const finnishAssignment = useMutation({
+  const finishAssignment = useMutation({
     mutationFn: () => {
       return axios.post(
-        "http://localhost:3000/api/assignment/finnish/" + assignment.id,
+        "http://localhost:3000/api/assignment/finish/" + assignment.id,
         {
           headers: {
             Accept: "application/json",
@@ -92,7 +92,7 @@ export function AssignmentCard({
               assignment={assignment}
               setAssignments={setAssignments}
             ></AddLegForm>
-            <button onClick={() => finnishAssignment.mutate()}>Finnish</button>
+            <button onClick={() => finishAssignment.mutate()}>Finish</button>
           </>
         )}
         {selected && (
