@@ -44,7 +44,7 @@ export function DriverCard({
           <h4>Product: {currentAssignment.product}</h4>
           <h4>Pickup: {currentAssignment.pickupLocation}</h4>
           <h4>Destination: {currentAssignment.destination}</h4>
-          <h4>Truck: {currentAssignment.truckInfo.type}</h4>
+          <h4>Truck Id: {currentAssignment.truckInfo.id}</h4>
           <h4>legs:</h4>
           {currentAssignment.legs.map((leg: LegInfo) => (
             <div className="leg" key={leg.id}>
@@ -66,7 +66,7 @@ export function DriverCard({
                 <h4>Product: {assignment.product}</h4>
                 <h4>Pickup: {assignment.pickupLocation}</h4>
                 <h4>Destination: {assignment.destination}</h4>
-                <h4>Truck: {assignment.truckInfo.type}</h4>
+                <h4>Truck Id: {assignment.truckInfo.id}</h4>
                 <h4>legs:</h4>
                 {assignment.legs.map((leg: LegInfo) => (
                   <div className="leg" key={leg.id}>

@@ -87,8 +87,10 @@ export function AssignAssignmentForm({
             "unassigned-truck_" + (selectedTruck == truck.id ? "selected" : "")
           }
         >
-          <h4>Type: {truck.type}</h4>
-          <h4>Year: {truck.year}</h4>
+          <h4>Truck Id: {truck.id}</h4>
+          <h4>payload: {truck.payload}</h4>
+          <h4>weight: {truck.weight}</h4>
+          <h4>height: {truck.height}</h4>
         </div>
       ))}
       <button onClick={() => assignAssignment.mutate()}>assign</button>

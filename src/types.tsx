@@ -17,22 +17,25 @@ export type AddDriverDto = {
 
 export type TruckDto = {
   id: string;
-  year: number;
-  type: string;
+  payload: number;
+  weight: number;
+  height: number;
   status: string;
   assignments: AssignmentDto[];
 };
 
 export type TruckInfo = {
   id: string;
-  year: number;
-  type: string;
+  payload: number;
+  weight: number;
+  height: number;
   status: string;
 };
 
 export type AddTruckDto = {
-  year: number;
-  type: string;
+  payload: number;
+  weight: number;
+  height: number;
 };
 
 export type LegInfo = {

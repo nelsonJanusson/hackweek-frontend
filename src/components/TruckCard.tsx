@@ -31,8 +31,10 @@ export function TruckCard({
   return (
     <>
       <div className="mainbody" onClick={() => setSelected(!selected)}>
-        <h4>Type: {truck.type}</h4>
-        <h4>Year: {truck.year}</h4>
+        <h3>Truck Id: {truck.id}</h3>
+        <h4>payload: {truck.payload}</h4>
+        <h4>weight: {truck.weight}</h4>
+        <h4>height: {truck.height}</h4>
       </div>
       {currentAssignment && (
         <div
@@ -43,7 +45,7 @@ export function TruckCard({
           <h4>Product: {currentAssignment.product}</h4>
           <h4>Pickup: {currentAssignment.pickupLocation}</h4>
           <h4>Destination: {currentAssignment.destination}</h4>
-          <h4>Truck: {currentAssignment.truckInfo.type}</h4>
+          <h4>Driver: {currentAssignment.driverInfo.name}</h4>
           <h4>legs:</h4>
           {currentAssignment.legs.map((leg: LegInfo) => (
             <div className="leg" key={leg.id}>

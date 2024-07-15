@@ -68,7 +68,7 @@ export function AssignmentCard({
         {(assignment.status == "Active" || assignment.status == "Finished") && (
           <>
             <h4>driver: {assignment.driverInfo.name}</h4>
-            <h4>truck: {assignment.truckInfo.type}</h4>
+            <h4>truck id: {assignment.truckInfo.id}</h4>
             <h4>legs:</h4>
             {assignment.legs.map((leg: LegInfo) => (
               <div key={leg.id}>
