@@ -30,32 +30,66 @@ export function AssignmentCard({
       console.log(error.message);
     },
   });
+
   const finnishAssignment = useMutation({
     mutationFn: () => {
       return axios.post(
-        "http://localhost:3000/api/assignment/finnish/" + assignment.id
+        "http://localhost:3000/api/assignment/finnish/" + assignment.id,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
       );
     },
-    onSuccess: () => {
-      console.log("yipieeeeeeee");
+    onSuccess: (e) => {
+      setAssignments((prevAssignments: AssignmentDto[]) =>
+        prevAssignments.filter(
+          (prevAssignment) => prevAssignment.id !== assignment.id
+        )
+      );
+      setAssignments((prevAssignments) => [...prevAssignments, e.data]);
     },
     onError: (error) => {
       console.log(error.message);
     },
   });
 
+  const assignAssignment = useMutation({
+    mutationFn: (e: FormValues) => {
+      return axios.post(
+        "http://localhost:3000/api/assignment/assign/" +
+          assignment.id +
+          "/" +
+          e.truck +
+          "/" +
+          e.driver,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      );
+    },
+    onError: (e) => {
+      console.log(e.message);
+    },
+    onSuccess: (e) => {
+      setAssignments((prevAssignments: AssignmentDto[]) =>
+        prevAssignments.filter(
+          (prevAssignment) => prevAssignment.id !== assignment.id
+        )
+      );
+      setAssignments((prevAssignments) => [...prevAssignments, e.data]);
+    },
+  });
+
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit = (data: FormValues) => {
-    axios.post(
-      "http://localhost:3000/api/assignment/assign/" +
-        assignment.id +
-        "/" +
-        data.truck +
-        "/" +
-        data.driver
-    );
+    assignAssignment.mutate(data);
   };
-  const onError = (errors, e) => console.log(errors, e);
 
   return (
     <div>
@@ -63,7 +97,7 @@ export function AssignmentCard({
       <h4>Destination: {assignment.destination}</h4>
       <h4>product: {assignment.product}</h4>
       {assignment.status == "Unassigned" && (
-        <form onSubmit={handleSubmit(onSubmit, onError)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <label>
             Truck:
             <input {...register("truck", { required: true })} />
@@ -77,7 +111,7 @@ export function AssignmentCard({
       )}
       ;
       {(assignment.status == "Active" || assignment.status == "Finished") && (
-        <div>
+        <>
           <h4>driver: {assignment.driverInfo.name}</h4>
           <h4>truck: {assignment.truckInfo.type}</h4>
           <h4>legs:</h4>
@@ -87,7 +121,7 @@ export function AssignmentCard({
               <p>ended at {leg.endLocation} </p>
             </div>
           ))}
-        </div>
+        </>
       )}
       {assignment.status == "Active" && (
         <button onClick={() => finnishAssignment.mutate()}>Finnish</button>
