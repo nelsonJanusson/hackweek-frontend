@@ -1,5 +1,6 @@
 import { TruckCard } from "../components/TruckCard";
 import { TruckDto } from "../types";
+import "../styling/TruckGallery.css";
 
 export function TruckGallery({
   trucks,

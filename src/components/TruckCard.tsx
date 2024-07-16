@@ -31,7 +31,7 @@ export function TruckCard({
   return (
     <>
       <div className="mainbody" onClick={() => setSelected(!selected)}>
-        <h3>Truck Id: {truck.id}</h3>
+        <h4>Truck Id: {truck.id}</h4>
         <h4>payload: {truck.payload}</h4>
         <h4>weight: {truck.weight}</h4>
         <h4>height: {truck.height}</h4>

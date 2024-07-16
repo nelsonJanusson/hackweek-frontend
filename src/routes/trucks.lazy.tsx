@@ -1,10 +1,9 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import axios from "axios";
-import { AddTruckDto, TruckDto } from "../types";
-import { useForm } from "react-hook-form";
+import { TruckDto } from "../types";
 import { useEffect, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { TruckGallery } from "../components/TruckGallery";
+import { AddTruckForm } from "../components/AddTruckForm";
 
 export const Route = createLazyFileRoute("/trucks")({
   component: Trucks,
@@ -13,7 +12,6 @@ export const Route = createLazyFileRoute("/trucks")({
 function Trucks() {
   const [assignedTrucks, setAssignedTrucks] = useState<TruckDto[]>([]);
   const [unassignedTrucks, setUnassignedTrucks] = useState<TruckDto[]>([]);
-  const { register, handleSubmit, reset } = useForm<AddTruckDto>();
 
   useEffect(() => {
     axios
@@ -32,54 +30,17 @@ function Trucks() {
       });
   }, []);
 
-  const addTruck = useMutation({
-    mutationFn: (e: AddTruckDto) => {
-      return axios.post("http://localhost:3000/api/truck", JSON.stringify(e), {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-      });
-    },
-    onError: (e) => {
-      console.log(e.message);
-    },
-    onSuccess: (e) => {
-      setUnassignedTrucks((prevTrucks) => [...prevTrucks, e.data]);
-      reset();
-    },
-  });
-
-  const onSubmit = (e: AddTruckDto) => {
-    addTruck.mutate(e);
-  };
-
   return (
     <>
-      <h1>Register New Truck</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          Payload:
-          <input {...register("payload", { required: true })} />
-        </label>
-        <label>
-          Weight:
-          <input {...register("weight", { required: true })} />
-        </label>
-        <label>
-          Height:
-          <input {...register("height", { required: true })} />
-        </label>
-        <input type="submit" />
-      </form>
+      <AddTruckForm setTrucks={setUnassignedTrucks}></AddTruckForm>
 
-      <h1>Current fleet assigned</h1>
+      <h2>Current fleet assigned</h2>
       <TruckGallery
         trucks={assignedTrucks}
         setTrucks={setAssignedTrucks}
       ></TruckGallery>
 
-      <h1>Current fleet unassigned</h1>
+      <h2>Current fleet unassigned</h2>
       <TruckGallery
         trucks={unassignedTrucks}
         setTrucks={setUnassignedTrucks}

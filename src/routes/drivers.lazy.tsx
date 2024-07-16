@@ -56,6 +56,7 @@ function Drivers() {
 
   return (
     <div>
+      <h1></h1>
       <h1>Register New Driver</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>

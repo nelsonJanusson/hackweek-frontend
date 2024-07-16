@@ -20,7 +20,6 @@ const TrucksLazyImport = createFileRoute('/trucks')()
 const DriversLazyImport = createFileRoute('/drivers')()
 const CustomersLazyImport = createFileRoute('/customers')()
 const AssignmentsLazyImport = createFileRoute('/assignments')()
-const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
@@ -44,22 +43,10 @@ const AssignmentsLazyRoute = AssignmentsLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/assignments.lazy').then((d) => d.Route))
 
-const IndexLazyRoute = IndexLazyImport.update({
-  path: '/',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
-
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
     '/assignments': {
       id: '/assignments'
       path: '/assignments'
@@ -94,7 +81,6 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  IndexLazyRoute,
   AssignmentsLazyRoute,
   CustomersLazyRoute,
   DriversLazyRoute,
@@ -109,15 +95,11 @@ export const routeTree = rootRoute.addChildren({
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
         "/assignments",
         "/customers",
         "/drivers",
         "/trucks"
       ]
-    },
-    "/": {
-      "filePath": "index.lazy.tsx"
     },
     "/assignments": {
       "filePath": "assignments.lazy.tsx"
