@@ -55,7 +55,7 @@ function Customers() {
       <h1>Register new Customer</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
-          Product:
+          Customer:
           <input {...register("name", { required: true })} />
         </label>
 

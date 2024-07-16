@@ -42,6 +42,7 @@ export function DriverCard({
         >
           <h3>Assignment</h3>
           <h4>Assignment id: {currentAssignment.id}</h4>
+          <h4>Asignment customer: {currentAssignment.customerInfo.name}</h4>
           <h4>Product: {currentAssignment.product}</h4>
           <h4>Pickup: {currentAssignment.pickupLocation}</h4>
           <h4>Destination: {currentAssignment.destination}</h4>
@@ -65,6 +66,7 @@ export function DriverCard({
               <div className="assignment" key={assignment.id}>
                 <h3>Assignment</h3>
                 <h4>Assignment id: {assignment.id}</h4>
+                <h4>Asignment customer: {assignment.customerInfo.name}</h4>
                 <h4>Product: {assignment.product}</h4>
                 <h4>Pickup: {assignment.pickupLocation}</h4>
                 <h4>Destination: {assignment.destination}</h4>

@@ -62,6 +62,7 @@ export function AssignmentCard({
     <>
       <div className="mainbody" onClick={() => setSelected(!selected)}>
         <h4>Asignment id: {assignment.id}</h4>
+        <h4>Asignment customer: {assignment.customerInfo.name}</h4>
         <h4>PickupLocation: {assignment.pickupLocation}</h4>
         <h4>Destination: {assignment.destination}</h4>
         <h4>product: {assignment.product}</h4>
