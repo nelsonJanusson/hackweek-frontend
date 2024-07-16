@@ -1,0 +1,19 @@
+.Customer-card-mainbody {
+  border: solid black 1px;
+  border-radius: 2px;
+  margin-bottom: 5px;
+}
+.Customer-card-extra {
+  margin: 5px;
+  padding: 5px;
+  border-top: solid black 1px;
+}
+.Customer-card-extra-assignments {
+  margin: 5px;
+  padding: 5px;
+  border-top: solid black 1px;
+}
+
+.Customer-card-test {
+  border: solid white 1px;
+}
