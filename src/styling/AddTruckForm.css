@@ -1,18 +1,3 @@
-.addTruckForm {
-  display: flex;
-  flex-direction: column;
-  margin: 5px;
-  padding: 5px;
-  border-top: solid black 1px;
-}
-.addTruck {
-  border: solid black 1px;
-  border-radius: 2px;
-}
-input {
-  margin-bottom: 10px;
-}
-
 h2 {
   margin: 5px;
   padding: 5px;

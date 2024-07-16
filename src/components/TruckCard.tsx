@@ -37,7 +37,7 @@ export function TruckCard({
           <h4>weight: {truck.weight}</h4>
           <h4>height: {truck.height}</h4>
         </div>
-        {currentAssignment && (
+        {currentAssignment && selected && (
           <div
             className="Truck-card-currentAssignment"
             onClick={() => setSelected(!selected)}

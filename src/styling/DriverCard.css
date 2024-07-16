@@ -1,9 +1,14 @@
 .Driver-card-mainbody {
   border: solid black 1px;
   border-radius: 2px;
-  margin-bottom: 5px;
+  margin: 5px;
 }
 .Driver-card-extra {
+  margin: 5px;
+  padding: 5px;
+  border-top: solid black 1px;
+}
+.Driver-card-extra-buttons {
   margin: 5px;
   padding: 5px;
   border-top: solid black 1px;

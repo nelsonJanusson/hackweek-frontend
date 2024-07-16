@@ -40,9 +40,9 @@ export function DriverCard({
           <h4>Name: {driver.name}</h4>
         </div>
         {selected && (
-          <div className="Driver-card-extra">
+          <>
             {currentAssignment && (
-              <div className="Driver-card-currentAssignment">
+              <div className="Driver-card-extra">
                 <h3>Assignment</h3>
                 <h4>Assignment id: {currentAssignment.id}</h4>
                 <h4>
@@ -63,11 +63,14 @@ export function DriverCard({
                 ))}
               </div>
             )}
-            <button onClick={() => removeDriver.mutate()}>delete</button>
-            <button onClick={() => setShowHistory(!showHistory)}>
-              {showHistory ? "hide" : "show"} history
-            </button>
-          </div>
+
+            <div className="Driver-card-extra-buttons">
+              <button onClick={() => removeDriver.mutate()}>delete</button>
+              <button onClick={() => setShowHistory(!showHistory)}>
+                {showHistory ? "hide" : "show"} history
+              </button>{" "}
+            </div>
+          </>
         )}
         {selected && showHistory && (
           <div className="Driver-card-history">

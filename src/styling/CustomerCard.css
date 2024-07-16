@@ -1,7 +1,7 @@
 .Customer-card-mainbody {
   border: solid black 1px;
   border-radius: 2px;
-  margin-bottom: 5px;
+  margin: 5px;
 }
 .Customer-card-extra {
   margin: 5px;

@@ -2,6 +2,7 @@ import axios from "axios";
 import { AddAssignmentDto, CustomerDto } from "../types";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
+import "../styling/AddAssignmentForm.css";
 
 export function AddAssignmentForm({
   customer,
@@ -43,19 +44,12 @@ export function AddAssignmentForm({
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          product:
-          <input {...register("product", { required: true })} />
-        </label>
-        <label>
-          pickupLocation:
-          <input {...register("pickupLocation", { required: true })} />
-        </label>
-        <label>
-          destination:
-          <input {...register("destination", { required: true })} />
-        </label>
-
+        <label>Product:</label>
+        <input {...register("product", { required: true })} />
+        <label>PickupLocation:</label>
+        <input {...register("pickupLocation", { required: true })} />
+        <label>Destination:</label>
+        <input {...register("destination", { required: true })} />
         <input type="submit" />
       </form>
     </>

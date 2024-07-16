@@ -14,7 +14,9 @@
   border-top: solid black 1px;
 }
 .Truck-card-currentAssignment {
-  border: solid black 1px;
+  margin: 5px;
+  padding: 5px;
+  border-top: solid black 1px;
 }
 .Truck-card-test {
   border: solid white 1px;

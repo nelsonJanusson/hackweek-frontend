@@ -2,7 +2,7 @@ import axios from "axios";
 import { AddTruckDto, TruckDto } from "../types";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import "../styling/AddTruckForm.css";
+import "../index.css";
 import { useState } from "react";
 
 export function AddTruckForm({
@@ -36,13 +36,13 @@ export function AddTruckForm({
   };
 
   return (
-    <div className="addTruck">
+    <div className="form-container">
       <div onClick={() => setSelected(!selected)}>
         <h2>Register New Truck</h2>
       </div>
 
       {selected && (
-        <form className="addTruckForm" onSubmit={handleSubmit(onSubmit)}>
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <label>Payload:</label>
           <input
             type="number"

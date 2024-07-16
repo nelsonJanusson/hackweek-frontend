@@ -12,7 +12,6 @@ export const Route = createLazyFileRoute("/drivers")({
 function Drivers() {
   const [assignedDrivers, setAssignedDrivers] = useState<DriverDto[]>([]);
   const [unassignedDrivers, setUnassignedDrivers] = useState<DriverDto[]>([]);
-  // const { register, handleSubmit, reset } = useForm<AddDriverDto>();
 
   useEffect(() => {
     axios
@@ -30,29 +29,6 @@ function Drivers() {
         console.log(error.response.data.error);
       });
   }, []);
-  /*
-  const addDriver = useMutation({
-    mutationFn: (e: AddDriverDto) => {
-      return axios.post("http://localhost:3000/api/driver", JSON.stringify(e), {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-      });
-    },
-    onError: (e) => {
-      console.log(e.message);
-    },
-    onSuccess: (e) => {
-      setUnassignedDrivers((prevDrivers) => [...prevDrivers, e.data]);
-      reset();
-    },
-  });
-
-  const onSubmit = (e: AddDriverDto) => {
-    addDriver.mutate(e);
-  };
-  */
 
   return (
     <div>
@@ -71,13 +47,3 @@ function Drivers() {
     </div>
   );
 }
-/*
-<h1>Register New Driver</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          Name:
-          <input {...register("name", { required: true })} />
-        </label>
-        <input type="submit" />
-      </form>
-      */

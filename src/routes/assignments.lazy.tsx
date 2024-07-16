@@ -3,7 +3,6 @@ import axios from "axios";
 import { AssignmentDto } from "../types";
 import { useEffect, useState } from "react";
 import { AssignmentGallery } from "../components/AssignmentGallery";
-
 export const Route = createLazyFileRoute("/assignments")({
   component: Assignments,
 });

@@ -1,18 +1,3 @@
-.addDriverForm {
-  margin: 5px;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  border-top: solid black 1px;
-}
-.addDriver {
-  border: solid black 1px;
-  border-radius: 2px;
-}
-input {
-  margin-bottom: 10px;
-}
-
 h2 {
   margin: 5px;
   padding: 5px;

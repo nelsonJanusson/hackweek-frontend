@@ -2,9 +2,8 @@ import axios from "axios";
 import { AddCustomerDto, CustomerDto } from "../types";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import "../styling/AddDriverForm.css";
+import "../index.css";
 import { useState } from "react";
-import "../styling/AddCustomerForm.css";
 
 export function AddCustomerForm({
   setCustomers,
@@ -41,13 +40,13 @@ export function AddCustomerForm({
   };
 
   return (
-    <div className="addCustomer">
+    <div className="form-container">
       <div onClick={() => setSelected(!selected)}>
         <h2>Register New Customer</h2>
       </div>
 
       {selected && (
-        <form className="addCustomerForm" onSubmit={handleSubmit(onSubmit)}>
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <label>Name:</label>
           <input {...register("name", { required: true })} />
           <input type="submit" />
