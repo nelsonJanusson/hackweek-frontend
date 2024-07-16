@@ -1,10 +1,9 @@
-import { useMutation } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import axios from "axios";
-import { AddDriverDto, DriverDto } from "../types";
-import { useForm } from "react-hook-form";
+import { DriverDto } from "../types";
 import { useEffect, useState } from "react";
 import { DriverGallery } from "../components/DriverGallery";
+import { AddDriverForm } from "../components/AddDriverForm";
 
 export const Route = createLazyFileRoute("/drivers")({
   component: Drivers,
@@ -13,7 +12,7 @@ export const Route = createLazyFileRoute("/drivers")({
 function Drivers() {
   const [assignedDrivers, setAssignedDrivers] = useState<DriverDto[]>([]);
   const [unassignedDrivers, setUnassignedDrivers] = useState<DriverDto[]>([]);
-  const { register, handleSubmit, reset } = useForm<AddDriverDto>();
+  // const { register, handleSubmit, reset } = useForm<AddDriverDto>();
 
   useEffect(() => {
     axios
@@ -31,7 +30,7 @@ function Drivers() {
         console.log(error.response.data.error);
       });
   }, []);
-
+  /*
   const addDriver = useMutation({
     mutationFn: (e: AddDriverDto) => {
       return axios.post("http://localhost:3000/api/driver", JSON.stringify(e), {
@@ -53,24 +52,18 @@ function Drivers() {
   const onSubmit = (e: AddDriverDto) => {
     addDriver.mutate(e);
   };
+  */
 
   return (
     <div>
-      <h1></h1>
-      <h1>Register New Driver</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          Name:
-          <input {...register("name", { required: true })} />
-        </label>
-        <input type="submit" />
-      </form>
-      <h1>Current Assigned Drivers:</h1>
+      <AddDriverForm setDrivers={setUnassignedDrivers}></AddDriverForm>
+
+      <h2>Current Assigned Drivers:</h2>
       <DriverGallery
         drivers={assignedDrivers}
         setDrivers={setAssignedDrivers}
       ></DriverGallery>
-      <h1>Current Unassigned Drivers:</h1>
+      <h2>Current Unassigned Drivers:</h2>
       <DriverGallery
         drivers={unassignedDrivers}
         setDrivers={setUnassignedDrivers}
@@ -78,3 +71,13 @@ function Drivers() {
     </div>
   );
 }
+/*
+<h1>Register New Driver</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>
+          Name:
+          <input {...register("name", { required: true })} />
+        </label>
+        <input type="submit" />
+      </form>
+      */

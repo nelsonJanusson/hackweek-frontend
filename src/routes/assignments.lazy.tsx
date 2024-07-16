@@ -23,19 +23,19 @@ function Assignments() {
 
   return (
     <div>
-      <h1>Active Assignments</h1>
+      <h2>Active Assignments</h2>
       <AssignmentGallery
         assignments={assignments.filter((e) => e.status == "Active")}
         setAssignments={setAssignments}
       ></AssignmentGallery>
 
-      <h1>Unassigned Assignments</h1>
+      <h2>Unassigned Assignments</h2>
       <AssignmentGallery
         assignments={assignments.filter((e) => e.status == "Unassigned")}
         setAssignments={setAssignments}
       ></AssignmentGallery>
 
-      <h1>Finished Assignments</h1>
+      <h2>Finished Assignments</h2>
       <AssignmentGallery
         assignments={assignments.filter((e) => e.status == "Finished")}
         setAssignments={setAssignments}

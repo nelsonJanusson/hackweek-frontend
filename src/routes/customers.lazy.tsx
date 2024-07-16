@@ -51,21 +51,23 @@ function Customers() {
   };
 
   return (
-    <div>
-      <h1>Register new Customer</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          Customer:
-          <input {...register("name", { required: true })} />
-        </label>
+    <>
+      <div>
+        <h1>Register new Customer</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label>
+            Customer:
+            <input {...register("name", { required: true })} />
+          </label>
 
-        <input type="submit" />
-      </form>
-      <h1>Customers</h1>
-      <CustomerGallery
-        customers={customers}
-        setCustomers={setCustomers}
-      ></CustomerGallery>
-    </div>
+          <input type="submit" />
+        </form>
+        <h1>Customers</h1>
+        <CustomerGallery
+          customers={customers}
+          setCustomers={setCustomers}
+        ></CustomerGallery>
+      </div>
+    </>
   );
 }

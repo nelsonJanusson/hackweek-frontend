@@ -1,6 +1,19 @@
-.mainbody {
+.Assignment-card-mainbody {
   border: solid black 1px;
+  border-radius: 2px;
+  margin-bottom: 5px;
 }
-.extra {
-  border: solid black 1px;
+.Assignment-card-extra-unassigned {
+  margin: 5px;
+  padding: 5px;
+  border-top: solid black 1px;
+}
+.Assignment-card-extra-active {
+  margin: 5px;
+  padding: 5px;
+  border-top: solid black 1px;
+}
+
+.Assignment-card-test {
+  border: solid white 1px;
 }

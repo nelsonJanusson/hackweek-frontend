@@ -32,48 +32,29 @@ export function DriverCard({
 
   return (
     <>
-      <div className="mainbody" onClick={() => setSelected(!selected)}>
-        <h4>Name: {driver.name}</h4>
-      </div>
-      {currentAssignment && (
+      <div className="Driver-card-mainbody">
         <div
-          className="currentAssignment"
+          className="Driver-card-test"
           onClick={() => setSelected(!selected)}
         >
-          <h3>Assignment</h3>
-          <h4>Assignment id: {currentAssignment.id}</h4>
-          <h4>Asignment customer: {currentAssignment.customerInfo.name}</h4>
-          <h4>Product: {currentAssignment.product}</h4>
-          <h4>Pickup: {currentAssignment.pickupLocation}</h4>
-          <h4>Destination: {currentAssignment.destination}</h4>
-          <h4>Truck Id: {currentAssignment.truckInfo.id}</h4>
-          <h4>legs:</h4>
-          {currentAssignment.legs.map((leg: LegInfo) => (
-            <div className="leg" key={leg.id}>
-              <h5>startDate: {leg.startDate.toString()}</h5>
-              <h5>endDate: {leg.endDate.toString()}</h5>
-              <h5>pickupLocation: {leg.startLocation}</h5>
-              <h5>endLocation: {leg.endLocation}</h5>
-            </div>
-          ))}
+          <h4>Name: {driver.name}</h4>
         </div>
-      )}
-      {selected && showHistory && (
-        <div className="history" onClick={() => setShowHistory(!showHistory)}>
-          {driver.assignments
-            .filter((e) => e.status == "Finished")
-            .map((assignment: AssignmentDto) => (
-              <div className="assignment" key={assignment.id}>
+        {selected && (
+          <div className="Driver-card-extra">
+            {currentAssignment && (
+              <div className="Driver-card-currentAssignment">
                 <h3>Assignment</h3>
-                <h4>Assignment id: {assignment.id}</h4>
-                <h4>Asignment customer: {assignment.customerInfo.name}</h4>
-                <h4>Product: {assignment.product}</h4>
-                <h4>Pickup: {assignment.pickupLocation}</h4>
-                <h4>Destination: {assignment.destination}</h4>
-                <h4>Truck Id: {assignment.truckInfo.id}</h4>
+                <h4>Assignment id: {currentAssignment.id}</h4>
+                <h4>
+                  Asignment customer: {currentAssignment.customerInfo.name}
+                </h4>
+                <h4>Product: {currentAssignment.product}</h4>
+                <h4>Pickup: {currentAssignment.pickupLocation}</h4>
+                <h4>Destination: {currentAssignment.destination}</h4>
+                <h4>Truck Id: {currentAssignment.truckInfo.id}</h4>
                 <h4>legs:</h4>
-                {assignment.legs.map((leg: LegInfo) => (
-                  <div className="leg" key={leg.id}>
+                {currentAssignment.legs.map((leg: LegInfo) => (
+                  <div className="Driver-card-leg" key={leg.id}>
                     <h5>startDate: {leg.startDate.toString()}</h5>
                     <h5>endDate: {leg.endDate.toString()}</h5>
                     <h5>pickupLocation: {leg.startLocation}</h5>
@@ -81,17 +62,40 @@ export function DriverCard({
                   </div>
                 ))}
               </div>
-            ))}
-        </div>
-      )}
-      {selected && (
-        <div className="extra">
-          <button onClick={() => removeDriver.mutate()}>delete</button>
-          <button onClick={() => setShowHistory(!showHistory)}>
-            {showHistory ? "hide" : "show"} history
-          </button>
-        </div>
-      )}
+            )}
+            <button onClick={() => removeDriver.mutate()}>delete</button>
+            <button onClick={() => setShowHistory(!showHistory)}>
+              {showHistory ? "hide" : "show"} history
+            </button>
+          </div>
+        )}
+        {selected && showHistory && (
+          <div className="Driver-card-history">
+            {driver.assignments
+              .filter((e) => e.status == "Finished")
+              .map((assignment: AssignmentDto) => (
+                <div className="assignment" key={assignment.id}>
+                  <h3>Assignment</h3>
+                  <h4>Assignment id: {assignment.id}</h4>
+                  <h4>Asignment customer: {assignment.customerInfo.name}</h4>
+                  <h4>Product: {assignment.product}</h4>
+                  <h4>Pickup: {assignment.pickupLocation}</h4>
+                  <h4>Destination: {assignment.destination}</h4>
+                  <h4>Truck Id: {assignment.truckInfo.id}</h4>
+                  <h4>legs:</h4>
+                  {assignment.legs.map((leg: LegInfo) => (
+                    <div className="leg" key={leg.id}>
+                      <h5>startDate: {leg.startDate.toString()}</h5>
+                      <h5>endDate: {leg.endDate.toString()}</h5>
+                      <h5>pickupLocation: {leg.startLocation}</h5>
+                      <h5>endLocation: {leg.endLocation}</h5>
+                    </div>
+                  ))}
+                </div>
+              ))}
+          </div>
+        )}
+      </div>
     </>
   );
 }

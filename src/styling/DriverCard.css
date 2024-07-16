@@ -1,12 +1,21 @@
-.mainbody {
+.Driver-card-mainbody {
   border: solid black 1px;
+  border-radius: 2px;
+  margin-bottom: 5px;
 }
-.extra {
-  border: solid black 1px;
+.Driver-card-extra {
+  margin: 5px;
+  padding: 5px;
+  border-top: solid black 1px;
 }
-.history {
-  border: solid black 1px;
+.Driver-card-history {
+  margin: 5px;
+  padding: 5px;
+  border-top: solid black 1px;
 }
-.currentAssignment {
-  border: solid black 1px;
+.Driver-card-test {
+  border: solid white 1px;
+}
+h4 {
+  padding: 5px;
 }

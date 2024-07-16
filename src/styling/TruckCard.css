@@ -1,12 +1,21 @@
-.mainbody {
+.Truck-card-mainbody {
+  margin: 5px;
+  border: solid black 1px;
+  border-radius: 2px;
+}
+.Truck-card-extra {
+  margin: 5px;
+  padding: 5px;
+  border-top: solid black 1px;
+}
+.Truck-card-history {
+  margin: 5px;
+  padding: 5px;
+  border-top: solid black 1px;
+}
+.Truck-card-currentAssignment {
   border: solid black 1px;
 }
-.extra {
-  border: solid black 1px;
-}
-.history {
-  border: solid black 1px;
-}
-.currentAssignment {
-  border: solid black 1px;
+.Truck-card-test {
+  border: solid white 1px;
 }

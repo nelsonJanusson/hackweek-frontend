@@ -60,42 +60,49 @@ export function AssignmentCard({
 
   return (
     <>
-      <div className="mainbody" onClick={() => setSelected(!selected)}>
-        <h4>Asignment id: {assignment.id}</h4>
-        <h4>Asignment customer: {assignment.customerInfo.name}</h4>
-        <h4>PickupLocation: {assignment.pickupLocation}</h4>
-        <h4>Destination: {assignment.destination}</h4>
-        <h4>product: {assignment.product}</h4>
+      <div className="Assignment-card-mainbody">
+        <div
+          className="Assignment-card-test"
+          onClick={() => setSelected(!selected)}
+        >
+          <h4>Asignment id: {assignment.id}</h4>
+          <h4>Asignment customer: {assignment.customerInfo.name}</h4>
+          <h4>PickupLocation: {assignment.pickupLocation}</h4>
+          <h4>Destination: {assignment.destination}</h4>
+          <h4>product: {assignment.product}</h4>
 
-        {(assignment.status == "Active" || assignment.status == "Finished") && (
-          <>
-            <h4>driver: {assignment.driverInfo.name}</h4>
-            <h4>truck id: {assignment.truckInfo.id}</h4>
-            <h4>legs:</h4>
-            {assignment.legs.map((leg: LegInfo) => (
-              <div key={leg.id}>
-                <p>started at {leg.startLocation} </p>
-                <p>ended at {leg.endLocation} </p>
-              </div>
-            ))}
-          </>
-        )}
-      </div>
-      <div className="extra">
+          {(assignment.status == "Active" ||
+            assignment.status == "Finished") && (
+            <>
+              <h4>driver: {assignment.driverInfo.name}</h4>
+              <h4>truck id: {assignment.truckInfo.id}</h4>
+              <h4>legs:</h4>
+              {assignment.legs.map((leg: LegInfo) => (
+                <div key={leg.id}>
+                  <p>started at {leg.startLocation} </p>
+                  <p>ended at {leg.endLocation} </p>
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+
         {assignment.status == "Unassigned" && selected && (
-          <AssignAssignmentForm
-            assignment={assignment}
-            setAssignments={setAssignments}
-          ></AssignAssignmentForm>
+          <div className="Assignment-card-extra-unnasigned">
+            <AssignAssignmentForm
+              assignment={assignment}
+              setAssignments={setAssignments}
+            ></AssignAssignmentForm>
+          </div>
         )}
         {assignment.status == "Active" && selected && (
-          <>
+          <div className="Assignment-card-extra-active">
             <AddLegForm
               assignment={assignment}
               setAssignments={setAssignments}
             ></AddLegForm>
             <button onClick={() => finishAssignment.mutate()}>Finish</button>
-          </>
+          </div>
         )}
         {selected && (
           <button onClick={() => removeAssignment.mutate()}>delete</button>
