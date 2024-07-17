@@ -17,6 +17,15 @@ export function AssignmentCard({
 
   const removeAssignment = useMutation({
     mutationFn: () => {
+      axios.post(
+        "http://localhost:3000/api/assignment/finish/" + assignment.id,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      );
       return axios.delete(
         "http://localhost:3000/api/assignment/" + assignment.id
       );
@@ -72,8 +81,8 @@ export function AssignmentCard({
 
         {(assignment.status == "Active" || assignment.status == "Finished") && (
           <>
-            <h4>driver: {assignment.driverInfo.name}</h4>
-            <h4>truck id: {assignment.truckInfo.id}</h4>
+            <h4>driver: {assignment.driverInfo?.name ?? "unknown"}</h4>
+            <h4>truck id: {assignment.truckInfo?.id ?? "unknown"}</h4>
             <h4>legs:</h4>
             {assignment.legs.map((leg: LegInfo) => (
               <div

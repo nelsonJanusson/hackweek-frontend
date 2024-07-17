@@ -45,7 +45,10 @@ export function AddLegForm({
 
   return (
     <>
-      <form className="addLegForm" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="bg-emerald-400 m-2  p-1 rounded-[4px] flex flex-col"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <label>StartDate:</label>
         <input
           className="button"

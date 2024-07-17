@@ -95,7 +95,7 @@ export function AssignAssignmentForm({
         </div>
       ))}
       <button
-        className="button"
+        className="bg-emerald-400 m-2  p-1 rounded-[4px]"
         onClick={() => {
           if (selectedDriver != "" && selectedTruck != "") {
             assignAssignment.mutate();
