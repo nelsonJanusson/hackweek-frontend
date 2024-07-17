@@ -34,13 +34,14 @@ function Drivers() {
     <div>
       <AddDriverForm setDrivers={setUnassignedDrivers}></AddDriverForm>
 
-      <h2>Current Assigned Drivers:</h2>
       <DriverGallery
+        title="Assigned Drivers"
         drivers={assignedDrivers}
         setDrivers={setAssignedDrivers}
       ></DriverGallery>
-      <h2>Current Unassigned Drivers:</h2>
+
       <DriverGallery
+        title="Unassigned Drivers"
         drivers={unassignedDrivers}
         setDrivers={setUnassignedDrivers}
       ></DriverGallery>

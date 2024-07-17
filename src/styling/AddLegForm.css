@@ -1,0 +1,6 @@
+.addLegForm {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+}

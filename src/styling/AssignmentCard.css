@@ -3,12 +3,8 @@
   border-radius: 2px;
   margin: 5px;
 }
-.Assignment-card-extra-unassigned {
-  margin: 5px;
-  padding: 5px;
-  border-top: solid black 1px;
-}
-.Assignment-card-extra-active {
+
+.Assignment-card-extra {
   margin: 5px;
   padding: 5px;
   border-top: solid black 1px;

@@ -3,7 +3,7 @@ import { AddAssignmentDto, CustomerDto } from "../types";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import "../styling/AddAssignmentForm.css";
-
+import "../index.css";
 export function AddAssignmentForm({
   customer,
   setCustomers,
@@ -11,7 +11,7 @@ export function AddAssignmentForm({
   customer: CustomerDto;
   setCustomers: React.Dispatch<React.SetStateAction<CustomerDto[]>>;
 }) {
-  const { register, handleSubmit } = useForm<AddAssignmentDto>();
+  const { register, handleSubmit, reset } = useForm<AddAssignmentDto>();
 
   const addCustomer = useMutation({
     mutationFn: (e: AddAssignmentDto) => {
@@ -31,6 +31,7 @@ export function AddAssignmentForm({
         prevCustomers.filter((prevCustomer) => prevCustomer.id !== customer.id)
       );
       setCustomers((prevCustomers) => [...prevCustomers, e.data]);
+      reset();
     },
     onError: (error) => {
       console.log(error.message);
@@ -43,14 +44,25 @@ export function AddAssignmentForm({
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="form2" onSubmit={handleSubmit(onSubmit)}>
         <label>Product:</label>
-        <input {...register("product", { required: true })} />
+        <input
+          className="button"
+          {...register("product", { required: true })}
+        />
         <label>PickupLocation:</label>
-        <input {...register("pickupLocation", { required: true })} />
+        <input
+          className="button"
+          {...register("pickupLocation", { required: true })}
+        />
         <label>Destination:</label>
-        <input {...register("destination", { required: true })} />
-        <input type="submit" />
+        <input
+          className="button"
+          {...register("destination", { required: true })}
+        />
+        <button className="button" type="submit">
+          Add Assignment
+        </button>
       </form>
     </>
   );

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import "../index.css";
 import { useState } from "react";
-
+import "../styling/AddDriverForm.css";
 export function AddDriverForm({
   setDrivers,
 }: {
@@ -44,8 +44,10 @@ export function AddDriverForm({
       {selected && (
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <label>Name:</label>
-          <input {...register("name", { required: true })} />
-          <input type="submit" />
+          <input className="button" {...register("name", { required: true })} />
+          <button className="button" type="submit">
+            Add Driver
+          </button>
         </form>
       )}
     </div>

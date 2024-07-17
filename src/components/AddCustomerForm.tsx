@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import "../index.css";
 import { useState } from "react";
-
+import "../styling/AddAssignmentForm.css";
 export function AddCustomerForm({
   setCustomers,
 }: {
@@ -44,12 +44,13 @@ export function AddCustomerForm({
       <div onClick={() => setSelected(!selected)}>
         <h2>Register New Customer</h2>
       </div>
-
       {selected && (
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <label>Name:</label>
-          <input {...register("name", { required: true })} />
-          <input type="submit" />
+          <input className="button" {...register("name", { required: true })} />
+          <button className="button" type="submit">
+            Add Customer
+          </button>
         </form>
       )}
     </div>

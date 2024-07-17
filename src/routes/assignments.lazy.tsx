@@ -22,20 +22,20 @@ function Assignments() {
 
   return (
     <div>
-      <h2>Active Assignments</h2>
       <AssignmentGallery
+        title="Active Assignments"
         assignments={assignments.filter((e) => e.status == "Active")}
         setAssignments={setAssignments}
       ></AssignmentGallery>
 
-      <h2>Unassigned Assignments</h2>
       <AssignmentGallery
+        title="Unassigned Assignments"
         assignments={assignments.filter((e) => e.status == "Unassigned")}
         setAssignments={setAssignments}
       ></AssignmentGallery>
 
-      <h2>Finished Assignments</h2>
       <AssignmentGallery
+        title="Finished Assignments"
         assignments={assignments.filter((e) => e.status == "Finished")}
         setAssignments={setAssignments}
       ></AssignmentGallery>

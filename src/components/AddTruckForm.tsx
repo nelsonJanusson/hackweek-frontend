@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import "../index.css";
 import { useState } from "react";
+import "../styling/AddTruckForm.css";
 
 export function AddTruckForm({
   setTrucks,
@@ -45,23 +46,28 @@ export function AddTruckForm({
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <label>Payload:</label>
           <input
+            className="button"
             type="number"
             step="0.01"
             {...register("payload", { required: true })}
           />
           <label>Weight:</label>
           <input
+            className="button"
             type="number"
             step="0.01"
             {...register("weight", { required: true })}
           />
           <label>Height:</label>
           <input
+            className="button"
             type="number"
             step="0.01"
             {...register("height", { required: true })}
           />
-          <input type="submit" />
+          <button className="button" type="submit">
+            Add Truck
+          </button>
         </form>
       )}
     </div>

@@ -1,10 +1,16 @@
 .unassigned-driver_ {
   background-color: white;
+  margin: 5px;
+  padding: 5px;
   border: solid black 1px;
+  border-radius: 2px;
 }
 .unassigned-driver_selected {
   background-color: gray;
+  margin: 5px;
+  padding: 5px;
   border: solid black 1px;
+  border-radius: 2px;
 }
 .unassigned-driver_ > * {
   width: "fit-content";
@@ -16,11 +22,17 @@
 
 .unassigned-truck_ {
   background-color: white;
+  margin: 5px;
+  padding: 5px;
   border: solid black 1px;
+  border-radius: 2px;
 }
 .unassigned-truck_selected {
   background-color: gray;
+  margin: 5px;
+  padding: 5px;
   border: solid black 1px;
+  border-radius: 2px;
 }
 .unassigned-truck_ > * {
   width: "fit-content";
@@ -28,4 +40,8 @@
 
 .unassigned-truck_selected > * {
   width: "fit-content";
+}
+h2 {
+  margin: 5px;
+  padding: 5px;
 }

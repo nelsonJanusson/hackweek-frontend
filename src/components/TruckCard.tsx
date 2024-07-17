@@ -3,6 +3,7 @@ import { AssignmentDto, LegInfo, TruckDto } from "../types";
 import { useMutation } from "@tanstack/react-query";
 import "../styling/TruckCard.css";
 import { useState } from "react";
+import "../index.css";
 
 export function TruckCard({
   truck,
@@ -30,7 +31,7 @@ export function TruckCard({
 
   return (
     <>
-      <div className="Truck-card-mainbody">
+      <div className="button">
         <div className="Truck-card-test" onClick={() => setSelected(!selected)}>
           <h4>Truck Id: {truck.id}</h4>
           <h4>payload: {truck.payload}</h4>
@@ -51,7 +52,7 @@ export function TruckCard({
             <h4>Driver: {currentAssignment.driverInfo.name}</h4>
             <h4>legs:</h4>
             {currentAssignment.legs.map((leg: LegInfo) => (
-              <div className="Truck-card-leg" key={leg.id}>
+              <div className="button" key={leg.id}>
                 <h5>startDate: {leg.startDate.toString()}</h5>
                 <h5>endDate: {leg.endDate.toString()}</h5>
                 <h5>pickupLocation: {leg.startLocation}</h5>
@@ -62,8 +63,13 @@ export function TruckCard({
         )}
         {selected && (
           <div className="Truck-card-extra">
-            <button onClick={() => removeTruck.mutate()}>delete</button>
-            <button onClick={() => setShowHistory(!showHistory)}>
+            <button className="button" onClick={() => removeTruck.mutate()}>
+              delete
+            </button>
+            <button
+              className="button"
+              onClick={() => setShowHistory(!showHistory)}
+            >
               {showHistory ? "hide" : "show"} history
             </button>
           </div>
@@ -86,7 +92,7 @@ export function TruckCard({
                   <h4>Driver: {assignment.driverInfo.name}</h4>
                   <h4>legs:</h4>
                   {assignment.legs.map((leg: LegInfo) => (
-                    <div className="Truck-card-leg" key={leg.id}>
+                    <div className="button" key={leg.id}>
                       <h5>startDate: {leg.startDate.toString()}</h5>
                       <h5>endDate: {leg.endDate.toString()}</h5>
                       <h5>pickupLocation: {leg.startLocation}</h5>

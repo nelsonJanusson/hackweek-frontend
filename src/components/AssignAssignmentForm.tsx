@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { AssignmentDto, DriverDto, TruckDto } from "../types";
 import "../styling/AssignAssignmentForm.css";
+import "../index.css";
 
 export function AssignAssignmentForm({
   assignment,
@@ -64,7 +65,7 @@ export function AssignAssignmentForm({
 
   return (
     <>
-      <p>drivers</p>
+      <h2>drivers</h2>
       {unassignedDrivers.map((driver: DriverDto) => (
         <div
           key={driver.id}
@@ -78,7 +79,7 @@ export function AssignAssignmentForm({
         </div>
       ))}
 
-      <p>trucks</p>
+      <h2>trucks</h2>
       {unassignedTrucks.map((truck: TruckDto) => (
         <div
           key={truck.id}
@@ -93,7 +94,16 @@ export function AssignAssignmentForm({
           <h4>height: {truck.height}</h4>
         </div>
       ))}
-      <button onClick={() => assignAssignment.mutate()}>assign</button>
+      <button
+        className="button"
+        onClick={() => {
+          if (selectedDriver != "" && selectedTruck != "") {
+            assignAssignment.mutate();
+          }
+        }}
+      >
+        assign
+      </button>
     </>
   );
 }

@@ -2,7 +2,7 @@ import axios from "axios";
 import { AddLegDto, AssignmentDto } from "../types";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-
+import "../styling/AddLegForm.css";
 export function AddLegForm({
   assignment,
   setAssignments,
@@ -10,7 +10,7 @@ export function AddLegForm({
   assignment: AssignmentDto;
   setAssignments: React.Dispatch<React.SetStateAction<AssignmentDto[]>>;
 }) {
-  const { register, handleSubmit } = useForm<AddLegDto>();
+  const { register, handleSubmit, reset } = useForm<AddLegDto>();
 
   const addLeg = useMutation({
     mutationFn: (e: AddLegDto) => {
@@ -32,6 +32,7 @@ export function AddLegForm({
         )
       );
       setAssignments((prevAssignments) => [...prevAssignments, e.data]);
+      reset();
     },
     onError: (error) => {
       console.log(error.message);
@@ -44,24 +45,32 @@ export function AddLegForm({
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          StartDate:
-          <input {...register("startDate", { required: true })} type="date" />
-        </label>
-        <label>
-          EndDate:
-          <input {...register("endDate", { required: true })} type="date" />
-        </label>
-        <label>
-          StartLocation:
-          <input {...register("startLocation", { required: true })} />
-        </label>
-        <label>
-          EndLocation:
-          <input {...register("endLocation", { required: true })} />
-        </label>
-        <input type="submit" />
+      <form className="addLegForm" onSubmit={handleSubmit(onSubmit)}>
+        <label>StartDate:</label>
+        <input
+          className="button"
+          {...register("startDate", { required: true })}
+          type="date"
+        />
+        <label>EndDate:</label>
+        <input
+          className="button"
+          {...register("endDate", { required: true })}
+          type="date"
+        />
+        <label>StartLocation:</label>
+        <input
+          className="button"
+          {...register("startLocation", { required: true })}
+        />
+        <label>EndLocation:</label>
+        <input
+          className="button"
+          {...register("endLocation", { required: true })}
+        />
+        <button className="button" type="submit">
+          Add Leg
+        </button>
       </form>
     </>
   );

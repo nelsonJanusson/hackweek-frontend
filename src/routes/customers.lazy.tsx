@@ -26,8 +26,8 @@ function Customers() {
     <>
       <div>
         <AddCustomerForm setCustomers={setCustomers}></AddCustomerForm>
-        <h2>Customers</h2>
         <CustomerGallery
+          title="Customers"
           customers={customers}
           setCustomers={setCustomers}
         ></CustomerGallery>

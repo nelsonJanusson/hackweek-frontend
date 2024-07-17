@@ -35,19 +35,28 @@ export function CustomerCard({
         className="Customer-card-test"
         onClick={() => setSelected(!selected)}
       >
-        <h4>Customer : {customer.name}</h4>
+        <h4>{customer.name}</h4>
       </div>
       {selected && (
-        <div className="Customer-card-extra">
-          <AddAssignmentForm
-            customer={customer}
-            setCustomers={setCustomers}
-          ></AddAssignmentForm>
-          <button onClick={() => removeCustomer.mutate()}>delete</button>
-          <button onClick={() => setShowAssignments(!showAssignments)}>
-            showAssignments
-          </button>
-        </div>
+        <>
+          <div className="Customer-card-extra">
+            <AddAssignmentForm
+              customer={customer}
+              setCustomers={setCustomers}
+            ></AddAssignmentForm>
+          </div>
+          <div className="Customer-card-extra">
+            <button className="button" onClick={() => removeCustomer.mutate()}>
+              delete
+            </button>
+            <button
+              className="button"
+              onClick={() => setShowAssignments(!showAssignments)}
+            >
+              {showAssignments ? "hide" : "show"} assignments
+            </button>
+          </div>
+        </>
       )}
       {selected && showAssignments && (
         <div className="Customer-card-extra-assignments">

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { AssignmentDto, DriverDto, LegInfo } from "../types";
 import { useMutation } from "@tanstack/react-query";
-import "../styling/DriverCard.css";
 import { useState } from "react";
+import "../index.css";
+import "../styling/DriverCard.css";
 
 export function DriverCard({
   driver,
@@ -37,12 +38,12 @@ export function DriverCard({
           className="Driver-card-test"
           onClick={() => setSelected(!selected)}
         >
-          <h4>Name: {driver.name}</h4>
+          <h4>{driver.name}</h4>
         </div>
         {selected && (
           <>
             {currentAssignment && (
-              <div className="Driver-card-extra">
+              <div className="button">
                 <h3>Assignment</h3>
                 <h4>Assignment id: {currentAssignment.id}</h4>
                 <h4>
@@ -54,7 +55,7 @@ export function DriverCard({
                 <h4>Truck Id: {currentAssignment.truckInfo.id}</h4>
                 <h4>legs:</h4>
                 {currentAssignment.legs.map((leg: LegInfo) => (
-                  <div className="Driver-card-leg" key={leg.id}>
+                  <div className="button" key={leg.id}>
                     <h5>startDate: {leg.startDate.toString()}</h5>
                     <h5>endDate: {leg.endDate.toString()}</h5>
                     <h5>pickupLocation: {leg.startLocation}</h5>
@@ -65,8 +66,13 @@ export function DriverCard({
             )}
 
             <div className="Driver-card-extra-buttons">
-              <button onClick={() => removeDriver.mutate()}>delete</button>
-              <button onClick={() => setShowHistory(!showHistory)}>
+              <button className="button" onClick={() => removeDriver.mutate()}>
+                delete
+              </button>
+              <button
+                className="button"
+                onClick={() => setShowHistory(!showHistory)}
+              >
                 {showHistory ? "hide" : "show"} history
               </button>{" "}
             </div>
@@ -87,7 +93,7 @@ export function DriverCard({
                   <h4>Truck Id: {assignment.truckInfo.id}</h4>
                   <h4>legs:</h4>
                   {assignment.legs.map((leg: LegInfo) => (
-                    <div className="leg" key={leg.id}>
+                    <div className="button" key={leg.id}>
                       <h5>startDate: {leg.startDate.toString()}</h5>
                       <h5>endDate: {leg.endDate.toString()}</h5>
                       <h5>pickupLocation: {leg.startLocation}</h5>

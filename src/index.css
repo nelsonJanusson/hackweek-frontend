@@ -10,9 +10,30 @@
     flex-direction: column;
     border-top: solid black 1px;
   }
+  .form2 {
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+  }
   .form-container {
     border: solid black 1px;
     border-radius: 2px;
     margin: 5px;
+  }
+
+  .button {
+    margin: 5px;
+    padding: 5px;
+    border: solid black 1px;
+    border-radius: 2px;
+  }
+  .gallery {
+    border-top: solid black 1px;
+  }
+  .gallery-new {
+    margin: 5px;
+    padding: 5px;
+    border-top: solid black 1px;
   }
 }
