@@ -33,7 +33,7 @@ export function DriverCard({
 
   return (
     <>
-      <div className="Driver-card-mainbody">
+      <div className="button">
         <div
           className="Driver-card-test"
           onClick={() => setSelected(!selected)}
@@ -66,11 +66,14 @@ export function DriverCard({
             )}
 
             <div className="Driver-card-extra-buttons">
-              <button className="button" onClick={() => removeDriver.mutate()}>
+              <button
+                className="bg-emerald-400 m-2  p-1 rounded-[4px]"
+                onClick={() => removeDriver.mutate()}
+              >
                 delete
               </button>
               <button
-                className="button"
+                className="bg-emerald-400 m-2  p-1 rounded-[4px]"
                 onClick={() => setShowHistory(!showHistory)}
               >
                 {showHistory ? "hide" : "show"} history
@@ -83,8 +86,10 @@ export function DriverCard({
             {driver.assignments
               .filter((e) => e.status == "Finished")
               .map((assignment: AssignmentDto) => (
-                <div className="assignment" key={assignment.id}>
-                  <h3>Assignment</h3>
+                <div
+                  className="bg-emerald-400 m-2  p-1 rounded-[4px]"
+                  key={assignment.id}
+                >
                   <h4>Assignment id: {assignment.id}</h4>
                   <h4>Asignment customer: {assignment.customerInfo.name}</h4>
                   <h4>Product: {assignment.product}</h4>

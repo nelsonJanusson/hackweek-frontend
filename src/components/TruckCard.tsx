@@ -63,11 +63,14 @@ export function TruckCard({
         )}
         {selected && (
           <div className="Truck-card-extra">
-            <button className="button" onClick={() => removeTruck.mutate()}>
+            <button
+              className="bg-emerald-400 m-2  p-1 rounded-[4px]"
+              onClick={() => removeTruck.mutate()}
+            >
               delete
             </button>
             <button
-              className="button"
+              className="bg-emerald-400 m-2  p-1 rounded-[4px]"
               onClick={() => setShowHistory(!showHistory)}
             >
               {showHistory ? "hide" : "show"} history
@@ -82,7 +85,10 @@ export function TruckCard({
             {truck.assignments
               .filter((e) => e.status == "Finished")
               .map((assignment: AssignmentDto) => (
-                <div className="Truck-card-assignment" key={assignment.id}>
+                <div
+                  className="bg-emerald-400 m-2  p-1 rounded-[4px]"
+                  key={assignment.id}
+                >
                   <h3>Assignment</h3>
                   <h4>Assignment id: {assignment.id}</h4>
                   <h4>Asignment customer: {assignment.customerInfo.name}</h4>

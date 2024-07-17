@@ -30,7 +30,7 @@ export function CustomerCard({
   });
 
   return (
-    <div className="Customer-card-mainbody">
+    <div className="button">
       <div
         className="Customer-card-test"
         onClick={() => setSelected(!selected)}
@@ -46,11 +46,14 @@ export function CustomerCard({
             ></AddAssignmentForm>
           </div>
           <div className="Customer-card-extra">
-            <button className="button" onClick={() => removeCustomer.mutate()}>
+            <button
+              className="bg-emerald-400 m-2  p-1 rounded-[4px]"
+              onClick={() => removeCustomer.mutate()}
+            >
               delete
             </button>
             <button
-              className="button"
+              className="bg-emerald-400 m-2  p-1 rounded-[4px]"
               onClick={() => setShowAssignments(!showAssignments)}
             >
               {showAssignments ? "hide" : "show"} assignments
@@ -61,7 +64,10 @@ export function CustomerCard({
       {selected && showAssignments && (
         <div className="Customer-card-extra-assignments">
           {customer.assignments.map((assignment: AssignmentDto) => (
-            <div key={assignment.id}>
+            <div
+              className="bg-emerald-400 m-2  p-1 rounded-[4px]"
+              key={assignment.id}
+            >
               <h4>Asignment id: {assignment.id}</h4>
               <h4>PickupLocation: {assignment.pickupLocation}</h4>
               <h4>Destination: {assignment.destination}</h4>

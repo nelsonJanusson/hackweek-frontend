@@ -75,7 +75,7 @@ export function AssignAssignmentForm({
             (selectedDriver == driver.id ? "selected" : "")
           }
         >
-          <h4>Name: {driver.name}</h4>
+          <h4>{driver.name}</h4>
         </div>
       ))}
 

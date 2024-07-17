@@ -59,7 +59,7 @@ export function AssignmentCard({
   });
 
   return (
-    <div className="Assignment-card-mainbody">
+    <div className="button">
       <div
         className="Assignment-card-test"
         onClick={() => setSelected(!selected)}
@@ -76,7 +76,10 @@ export function AssignmentCard({
             <h4>truck id: {assignment.truckInfo.id}</h4>
             <h4>legs:</h4>
             {assignment.legs.map((leg: LegInfo) => (
-              <div className="button" key={leg.id}>
+              <div
+                className="bg-emerald-400 m-2  p-1 rounded-[4px]"
+                key={leg.id}
+              >
                 <h5>startDate: {leg.startDate.toString()}</h5>
                 <h5>endDate: {leg.endDate.toString()}</h5>
                 <h5>pickupLocation: {leg.startLocation}</h5>
@@ -103,7 +106,7 @@ export function AssignmentCard({
                 setAssignments={setAssignments}
               ></AddLegForm>
               <button
-                className="button"
+                className="bg-emerald-400 m-2  p-1 rounded-[4px]"
                 onClick={() => finishAssignment.mutate()}
               >
                 Finish
@@ -112,7 +115,7 @@ export function AssignmentCard({
           )}
           {selected && (
             <button
-              className="button"
+              className="bg-emerald-400 m-2  p-1 rounded-[4px]"
               onClick={() => removeAssignment.mutate()}
             >
               delete

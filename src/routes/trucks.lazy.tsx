@@ -35,13 +35,13 @@ function Trucks() {
       <AddTruckForm setTrucks={setUnassignedTrucks}></AddTruckForm>
 
       <TruckGallery
-        title="Assigned Drivers"
+        title="Assigned Trucks"
         trucks={assignedTrucks}
         setTrucks={setAssignedTrucks}
       ></TruckGallery>
 
       <TruckGallery
-        title="Unassigned Drivers"
+        title="Unassigned Trucks"
         trucks={unassignedTrucks}
         setTrucks={setUnassignedTrucks}
       ></TruckGallery>

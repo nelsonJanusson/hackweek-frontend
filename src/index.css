@@ -15,18 +15,22 @@
     padding: 5px;
     display: flex;
     flex-direction: column;
+    background-color: rgb(52 211 153);
+    border-radius: 4px;
   }
+
   .form-container {
-    border: solid black 1px;
-    border-radius: 2px;
+    background-color: rgb(52 211 153);
+
+    border-radius: 4px;
     margin: 5px;
   }
 
   .button {
+    background-color: white;
     margin: 5px;
     padding: 5px;
-    border: solid black 1px;
-    border-radius: 2px;
+    border-radius: 4px;
   }
   .gallery {
     border-top: solid black 1px;
