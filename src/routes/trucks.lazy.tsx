@@ -15,14 +15,14 @@ function Trucks() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/truck/unassigned")
+      .get("https://hackweek-backend.azurewebsites.net/api/truck/unassigned")
       .then((res) => res.data)
       .then((res) => setUnassignedTrucks(res))
       .catch((error) => {
         console.log(error.response.data.error);
       });
     axios
-      .get("http://localhost:3000/api/truck/assigned")
+      .get("https://hackweek-backend.azurewebsites.net/api/truck/assigned")
       .then((res) => res.data)
       .then((res) => setAssignedTrucks(res))
       .catch((error) => {

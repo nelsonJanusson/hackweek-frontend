@@ -17,7 +17,9 @@ export function CustomerCard({
 
   const removeCustomer = useMutation({
     mutationFn: () => {
-      return axios.delete("http://localhost:3000/api/customer/" + customer.id);
+      return axios.delete(
+        "https://hackweek-backend.azurewebsites.net/api/customer/" + customer.id
+      );
     },
     onSuccess: () => {
       setCustomers((prevCustomers: CustomerDto[]) =>

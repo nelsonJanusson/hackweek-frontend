@@ -12,7 +12,7 @@ function Assignments() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/assignment")
+      .get("https://hackweek-backend.azurewebsites.net/api/assignment")
       .then((res) => res.data)
       .then((res) => setAssignments(res))
       .catch((error) => {

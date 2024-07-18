@@ -18,14 +18,14 @@ export function AssignAssignmentForm({
   const [selectedTruck, setSelectedTruck] = useState<string>("");
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/driver/unassigned")
+      .get("https://hackweek-backend.azurewebsites.net/api/driver/unassigned")
       .then((res) => res.data)
       .then((res) => setUnassignedDrivers(res))
       .catch((error) => {
         console.log(error.response.data.error);
       });
     axios
-      .get("http://localhost:3000/api/truck/unassigned")
+      .get("https://hackweek-backend.azurewebsites.net/api/truck/unassigned")
       .then((res) => res.data)
       .then((res) => setUnassignedTrucks(res))
       .catch((error) => {
@@ -36,7 +36,7 @@ export function AssignAssignmentForm({
   const assignAssignment = useMutation({
     mutationFn: () => {
       return axios.post(
-        "http://localhost:3000/api/assignment/assign/" +
+        "https://hackweek-backend.azurewebsites.net/api/assignment/assign/" +
           assignment.id +
           "/" +
           selectedTruck +

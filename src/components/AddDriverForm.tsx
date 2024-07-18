@@ -15,12 +15,16 @@ export function AddDriverForm({
 
   const addDriver = useMutation({
     mutationFn: (e: AddDriverDto) => {
-      return axios.post("http://localhost:3000/api/driver", JSON.stringify(e), {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-      });
+      return axios.post(
+        "https://hackweek-backend.azurewebsites.net/api/driver",
+        JSON.stringify(e),
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      );
     },
     onSuccess: (e) => {
       setDrivers((prevDrivers) => [...prevDrivers, e.data]);

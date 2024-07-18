@@ -17,7 +17,9 @@ export function TruckCard({
   const currentAssignment = truck.assignments.find((e) => e.status == "Active");
   const removeTruck = useMutation({
     mutationFn: () => {
-      return axios.delete("http://localhost:3000/api/truck/" + truck.id);
+      return axios.delete(
+        "https://hackweek-backend.azurewebsites.net/api/truck/" + truck.id
+      );
     },
     onSuccess: () => {
       setTrucks((prevTrucks: TruckDto[]) =>

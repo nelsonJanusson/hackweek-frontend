@@ -19,7 +19,9 @@ export function DriverCard({
   );
   const removeDriver = useMutation({
     mutationFn: () => {
-      return axios.delete("http://localhost:3000/api/driver/" + driver.id);
+      return axios.delete(
+        "https://hackweek-backend.azurewebsites.net/api/driver/" + driver.id
+      );
     },
     onSuccess: () => {
       setDrivers((prevDrivers: DriverDto[]) =>
@@ -43,7 +45,10 @@ export function DriverCard({
         {selected && (
           <>
             {currentAssignment && (
-              <div className="button">
+              <div
+                className="bg-white m-5 p-5  border-t border-black border-solid"
+                onClick={() => setSelected(!selected)}
+              >
                 <h3>Assignment</h3>
                 <h4>Assignment id: {currentAssignment.id}</h4>
                 <h4>
@@ -64,7 +69,6 @@ export function DriverCard({
                 ))}
               </div>
             )}
-
             <div className="Driver-card-extra-buttons">
               <button
                 className="bg-emerald-400 m-2  p-1 rounded-[4px]"

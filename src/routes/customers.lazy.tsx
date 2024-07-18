@@ -14,7 +14,7 @@ function Customers() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/customer")
+      .get("https://hackweek-backend.azurewebsites.net/api/customer")
       .then((res) => res.data)
       .then((res) => setCustomers(res))
       .catch((error) => {

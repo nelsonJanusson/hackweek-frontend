@@ -16,7 +16,7 @@ export function AddCustomerForm({
   const addCustomer = useMutation({
     mutationFn: (e: AddCustomerDto) => {
       return axios.post(
-        "http://localhost:3000/api/customer",
+        "https://hackweek-backend.azurewebsites.net/api/customer",
         JSON.stringify(e),
         {
           headers: {

@@ -15,14 +15,14 @@ function Drivers() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/driver/unassigned")
+      .get("https://hackweek-backend.azurewebsites.net/api/driver/unassigned")
       .then((res) => res.data)
       .then((res) => setUnassignedDrivers(res))
       .catch((error) => {
         console.log(error.response.data.error);
       });
     axios
-      .get("http://localhost:3000/api/driver/assigned")
+      .get("https://hackweek-backend.azurewebsites.net/api/driver/assigned")
       .then((res) => res.data)
       .then((res) => setAssignedDrivers(res))
       .catch((error) => {

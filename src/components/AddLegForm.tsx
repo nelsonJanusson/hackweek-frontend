@@ -15,7 +15,8 @@ export function AddLegForm({
   const addLeg = useMutation({
     mutationFn: (e: AddLegDto) => {
       return axios.post(
-        "http://localhost:3000/api/assignment/leg/" + assignment.id,
+        "https://hackweek-backend.azurewebsites.net/api/assignment/leg/" +
+          assignment.id,
         JSON.stringify(e),
         {
           headers: {

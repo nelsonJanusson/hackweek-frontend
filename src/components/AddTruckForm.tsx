@@ -16,12 +16,16 @@ export function AddTruckForm({
 
   const addTruck = useMutation({
     mutationFn: (e: AddTruckDto) => {
-      return axios.post("http://localhost:3000/api/truck", JSON.stringify(e), {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-      });
+      return axios.post(
+        "https://hackweek-backend.azurewebsites.net/api/truck",
+        JSON.stringify(e),
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      );
     },
     onSuccess: (e) => {
       setTrucks((prevTrucks) => [...prevTrucks, e.data]);

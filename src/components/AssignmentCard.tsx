@@ -18,7 +18,8 @@ export function AssignmentCard({
   const removeAssignment = useMutation({
     mutationFn: () => {
       axios.post(
-        "http://localhost:3000/api/assignment/finish/" + assignment.id,
+        "https://hackweek-backend.azurewebsites.net/api/assignment/finish/" +
+          assignment.id,
         {
           headers: {
             Accept: "application/json",
@@ -27,7 +28,8 @@ export function AssignmentCard({
         }
       );
       return axios.delete(
-        "http://localhost:3000/api/assignment/" + assignment.id
+        "https://hackweek-backend.azurewebsites.net/api/assignment/" +
+          assignment.id
       );
     },
     onSuccess: () => {
@@ -45,7 +47,8 @@ export function AssignmentCard({
   const finishAssignment = useMutation({
     mutationFn: () => {
       return axios.post(
-        "http://localhost:3000/api/assignment/finish/" + assignment.id,
+        "https://hackweek-backend.azurewebsites.net/api/assignment/finish/" +
+          assignment.id,
         {
           headers: {
             Accept: "application/json",
