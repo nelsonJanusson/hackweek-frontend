@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import "../styling/AddAssignmentForm.css";
 import "../index.css";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 export function AddAssignmentForm({
   customer,
   setCustomers,
@@ -35,9 +35,11 @@ export function AddAssignmentForm({
       );
       setCustomers((prevCustomers) => [...prevCustomers, e.data]);
       reset();
+      toast.success("sucesfully created assignment");
     },
     onError: (error) => {
       console.log(error.message);
+      toast.error("sucesfully created assignment");
     },
   });
 
