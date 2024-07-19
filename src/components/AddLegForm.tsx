@@ -53,31 +53,37 @@ export function AddLegForm({
         className="bg-emerald-400 m-2  p-1 rounded-[4px] flex flex-col"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <label>StartDate:</label>
-        <input
-          className="button"
-          {...register("startDate", { required: true })}
-          type="date"
-        />
-        <label>EndDate:</label>
-        <input
-          className="button"
-          {...register("endDate", { required: true })}
-          type="date"
-        />
-        <label>StartLocation:</label>
-        <input
-          className="button"
-          {...register("startLocation", { required: true })}
-        />
-        <label>EndLocation:</label>
-        <input
-          className="button"
-          {...register("endLocation", { required: true })}
-        />
-        <button className="button-real" type="submit">
-          Add Leg
-        </button>
+        <h2>Register New Assignment</h2>
+
+        <div className="border-t border-black">
+          <div className="form3">
+            <label>StartDate:</label>
+            <input
+              className="button"
+              {...register("startDate", { required: true })}
+              type="date"
+            />
+            <label>EndDate:</label>
+            <input
+              className="button"
+              {...register("endDate", { required: true })}
+              type="date"
+            />
+            <label>StartLocation:</label>
+            <input
+              className="button"
+              {...register("startLocation", { required: true })}
+            />
+            <label>EndLocation:</label>
+            <input
+              className="button"
+              {...register("endLocation", { required: true })}
+            />
+            <button className="button-real" type="submit">
+              Add Leg
+            </button>
+          </div>
+        </div>
       </form>
       <Toaster position="top-center" />
     </>
