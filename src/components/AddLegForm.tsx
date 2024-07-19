@@ -53,7 +53,7 @@ export function AddLegForm({
         className="bg-emerald-400 m-2  p-1 rounded-[4px] flex flex-col"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h2>Register New Assignment</h2>
+        <h2>Add New Leg</h2>
 
         <div className="border-t border-black">
           <div className="form3">
