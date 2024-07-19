@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import "../styling/AddAssignmentForm.css";
 import "../index.css";
+import { Toaster } from "react-hot-toast";
 export function AddAssignmentForm({
   customer,
   setCustomers,
@@ -47,25 +48,32 @@ export function AddAssignmentForm({
   return (
     <>
       <form className="form2" onSubmit={handleSubmit(onSubmit)}>
-        <label>Product:</label>
-        <input
-          className="button"
-          {...register("product", { required: true })}
-        />
-        <label>PickupLocation:</label>
-        <input
-          className="button"
-          {...register("pickupLocation", { required: true })}
-        />
-        <label>Destination:</label>
-        <input
-          className="button"
-          {...register("destination", { required: true })}
-        />
-        <button className="button" type="submit">
-          Add Assignment
-        </button>
+        <h2>Register New Assignment</h2>
+
+        <div className="border-t border-black">
+          <div className="form3">
+            <label>Product:</label>
+            <input
+              className="button"
+              {...register("product", { required: true })}
+            />
+            <label>PickupLocation:</label>
+            <input
+              className="button"
+              {...register("pickupLocation", { required: true })}
+            />
+            <label>Destination:</label>
+            <input
+              className="button"
+              {...register("destination", { required: true })}
+            />
+            <button className="button-real" type="submit">
+              Add Assignment
+            </button>{" "}
+          </div>
+        </div>
       </form>
+      <Toaster position="top-center" />
     </>
   );
 }

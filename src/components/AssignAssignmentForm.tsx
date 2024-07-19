@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AssignmentDto, DriverDto, TruckDto } from "../types";
 import "../styling/AssignAssignmentForm.css";
 import "../index.css";
+import toast, { Toaster } from "react-hot-toast";
 
 export function AssignAssignmentForm({
   assignment,
@@ -52,6 +53,7 @@ export function AssignAssignmentForm({
     },
     onError: (e) => {
       console.log(e.message);
+      toast.error("error assigning assignment, please try again");
     },
     onSuccess: (e) => {
       setAssignments((prevAssignments: AssignmentDto[]) =>
@@ -60,6 +62,7 @@ export function AssignAssignmentForm({
         )
       );
       setAssignments((prevAssignments) => [...prevAssignments, e.data]);
+      toast.success("Assignment assigned sucessfully");
     },
   });
 
@@ -104,6 +107,7 @@ export function AssignAssignmentForm({
       >
         assign
       </button>
+      <Toaster position="top-center" />
     </>
   );
 }

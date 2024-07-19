@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { TruckCard } from "../components/TruckCard";
 import { TruckDto } from "../types";
 
@@ -11,11 +10,12 @@ export function TruckGallery({
   setTrucks: React.Dispatch<React.SetStateAction<TruckDto[]>>;
   title: string;
 }) {
-  const [selected, setSelected] = useState<boolean>(false);
+  //const [selected, setSelected] = useState<boolean>(true);
+  const selected = true;
 
   return (
     <div className="form-container">
-      <div onClick={() => setSelected(!selected)}>
+      <div>
         <h2>{title}</h2>
       </div>
 
@@ -33,3 +33,4 @@ export function TruckGallery({
     </div>
   );
 }
+//onClick={() => setSelected(!selected)}

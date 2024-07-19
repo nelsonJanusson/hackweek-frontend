@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CustomerDto } from "../types";
 import { CustomerCard } from "./CustomerCard";
 
@@ -11,11 +10,12 @@ export function CustomerGallery({
   setCustomers: React.Dispatch<React.SetStateAction<CustomerDto[]>>;
   title: string;
 }) {
-  const [selected, setSelected] = useState<boolean>(false);
+  //const [selected, setSelected] = useState<boolean>(true);
+  const selected = true;
 
   return (
     <div className="form-container">
-      <div onClick={() => setSelected(!selected)}>
+      <div>
         <h2>{title}</h2>
       </div>
       {selected && (

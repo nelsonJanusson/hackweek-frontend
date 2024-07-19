@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AssignmentDto, CustomerDto } from "../types";
 import { AddAssignmentForm } from "./AddAssignmentForm";
 import "../styling/CustomerCard.css";
+import toast, { Toaster } from "react-hot-toast";
 
 export function CustomerCard({
   customer,
@@ -25,9 +26,11 @@ export function CustomerCard({
       setCustomers((prevCustomers: CustomerDto[]) =>
         prevCustomers.filter((prevCustomer) => prevCustomer.id !== customer.id)
       );
+      toast.success("Customer sucessfully deleted");
     },
     onError: (error) => {
       console.log(error.message);
+      toast.success("Error deleting customer, please try again");
     },
   });
 
@@ -78,6 +81,7 @@ export function CustomerCard({
           ))}
         </div>
       )}
+      <Toaster position="top-center" />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import "../index.css";
 import { useState } from "react";
 import "../styling/AddDriverForm.css";
+import toast, { Toaster } from "react-hot-toast";
 export function AddDriverForm({
   setDrivers,
 }: {
@@ -12,7 +13,6 @@ export function AddDriverForm({
 }) {
   const { register, handleSubmit, reset } = useForm<DriverDto>();
   const [selected, setSelected] = useState<boolean>(false);
-
   const addDriver = useMutation({
     mutationFn: (e: AddDriverDto) => {
       return axios.post(
@@ -28,9 +28,13 @@ export function AddDriverForm({
     },
     onSuccess: (e) => {
       setDrivers((prevDrivers) => [...prevDrivers, e.data]);
+      toast.success("Driver registered succesfully");
     },
     onError: (error) => {
       console.log(error.message);
+      toast.error(
+        "There was an error registering the driver, please try again"
+      );
     },
   });
 
@@ -49,11 +53,12 @@ export function AddDriverForm({
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <label>Name:</label>
           <input className="button" {...register("name", { required: true })} />
-          <button className="button" type="submit">
+          <button className="button-real" type="submit">
             Add Driver
           </button>
         </form>
       )}
+      <Toaster position="top-center" />
     </div>
   );
 }

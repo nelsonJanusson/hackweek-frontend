@@ -24,7 +24,7 @@ function Customers() {
 
   return (
     <>
-      <div>
+      <div className="m-5">
         <AddCustomerForm setCustomers={setCustomers}></AddCustomerForm>
         <CustomerGallery
           title="Customers"

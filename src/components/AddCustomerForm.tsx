@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import "../index.css";
 import { useState } from "react";
 import "../styling/AddAssignmentForm.css";
+import toast, { Toaster } from "react-hot-toast";
 export function AddCustomerForm({
   setCustomers,
 }: {
@@ -28,9 +29,13 @@ export function AddCustomerForm({
     },
     onSuccess: (e) => {
       setCustomers((prevCustomers) => [...prevCustomers, e.data]);
+      toast.success("Customer registered succesfully");
     },
     onError: (error) => {
       console.log(error.message);
+      toast.error(
+        "There was anerror registering the customer, please try again"
+      );
     },
   });
 
@@ -48,11 +53,12 @@ export function AddCustomerForm({
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <label>Name:</label>
           <input className="button" {...register("name", { required: true })} />
-          <button className="button" type="submit">
+          <button className="button-real" type="submit">
             Add Customer
           </button>
         </form>
       )}
+      <Toaster position="top-center" />
     </div>
   );
 }

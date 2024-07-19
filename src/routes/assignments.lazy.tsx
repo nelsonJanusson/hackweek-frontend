@@ -21,24 +21,30 @@ function Assignments() {
   }, []);
 
   return (
-    <div>
-      <AssignmentGallery
-        title="Active Assignments"
-        assignments={assignments.filter((e) => e.status == "Active")}
-        setAssignments={setAssignments}
-      ></AssignmentGallery>
+    <div className="flex m-5">
+      <div className="basis-1/3">
+        <AssignmentGallery
+          title="Active Assignments"
+          assignments={assignments.filter((e) => e.status == "Active")}
+          setAssignments={setAssignments}
+        ></AssignmentGallery>
+      </div>
 
-      <AssignmentGallery
-        title="Unassigned Assignments"
-        assignments={assignments.filter((e) => e.status == "Unassigned")}
-        setAssignments={setAssignments}
-      ></AssignmentGallery>
+      <div className="basis-1/3">
+        <AssignmentGallery
+          title="Unassigned Assignments"
+          assignments={assignments.filter((e) => e.status == "Unassigned")}
+          setAssignments={setAssignments}
+        ></AssignmentGallery>
+      </div>
 
-      <AssignmentGallery
-        title="Finished Assignments"
-        assignments={assignments.filter((e) => e.status == "Finished")}
-        setAssignments={setAssignments}
-      ></AssignmentGallery>
+      <div className="basis-1/3">
+        <AssignmentGallery
+          title="Finished Assignments"
+          assignments={assignments.filter((e) => e.status == "Finished")}
+          setAssignments={setAssignments}
+        ></AssignmentGallery>
+      </div>
     </div>
   );
 }

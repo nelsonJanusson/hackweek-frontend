@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import "../index.css";
 import { useState } from "react";
 import "../styling/AddTruckForm.css";
+import toast, { Toaster } from "react-hot-toast";
 
 export function AddTruckForm({
   setTrucks,
@@ -29,9 +30,11 @@ export function AddTruckForm({
     },
     onSuccess: (e) => {
       setTrucks((prevTrucks) => [...prevTrucks, e.data]);
+      toast.success("Truck Added Sucesfully");
     },
     onError: (error) => {
       console.log(error.message);
+      toast.error("There was an error adding the truck, please try again");
     },
   });
 
@@ -69,11 +72,12 @@ export function AddTruckForm({
             step="0.01"
             {...register("height", { required: true })}
           />
-          <button className="button" type="submit">
+          <button className="button-real" type="submit">
             Add Truck
           </button>
         </form>
       )}
+      <Toaster position="top-center" />
     </div>
   );
 }

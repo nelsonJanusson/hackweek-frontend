@@ -3,6 +3,7 @@ import { AddLegDto, AssignmentDto } from "../types";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import "../styling/AddLegForm.css";
+import toast, { Toaster } from "react-hot-toast";
 export function AddLegForm({
   assignment,
   setAssignments,
@@ -34,9 +35,11 @@ export function AddLegForm({
       );
       setAssignments((prevAssignments) => [...prevAssignments, e.data]);
       reset();
+      toast.success("Leg added succesfully");
     },
     onError: (error) => {
       console.log(error.message);
+      toast.error("There was an error adding the leg, please try again");
     },
   });
 
@@ -72,10 +75,11 @@ export function AddLegForm({
           className="button"
           {...register("endLocation", { required: true })}
         />
-        <button className="button" type="submit">
+        <button className="button-real" type="submit">
           Add Leg
         </button>
       </form>
+      <Toaster position="top-center" />
     </>
   );
 }

@@ -5,6 +5,7 @@ import { AddLegForm } from "./AddLegForm";
 import "../styling/AssignmentCard.css";
 import { useState } from "react";
 import { AssignAssignmentForm } from "./AssignAssignmentForm";
+import toast, { Toaster } from "react-hot-toast";
 
 export function AssignmentCard({
   assignment,
@@ -38,9 +39,11 @@ export function AssignmentCard({
           (prevAssignment) => prevAssignment.id !== assignment.id
         )
       );
+      toast.success("Assignment sucessfully deleted");
     },
     onError: (error) => {
       console.log(error.message);
+      toast.success("Error deleting assignment, please try again");
     },
   });
 
@@ -64,9 +67,11 @@ export function AssignmentCard({
         )
       );
       setAssignments((prevAssignments) => [...prevAssignments, e.data]);
+      toast.success("Assignment sucessfully finnished");
     },
     onError: (error) => {
       console.log(error.message);
+      toast.error("error finnishing assignment, please try again");
     },
   });
 
@@ -135,6 +140,7 @@ export function AssignmentCard({
           )}
         </div>
       )}
+      <Toaster position="top-center" />
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { AssignmentDto } from "../types";
 import { AssignmentCard } from "./AssignmentCard";
 
@@ -11,11 +10,11 @@ export function AssignmentGallery({
   setAssignments: React.Dispatch<React.SetStateAction<AssignmentDto[]>>;
   title: string;
 }) {
-  const [selected, setSelected] = useState<boolean>(false);
-
+  // const [selected, setSelected] = useState<boolean>(true);
+  const selected = true;
   return (
     <div className="form-container">
-      <div onClick={() => setSelected(!selected)}>
+      <div>
         <h2>{title}</h2>
       </div>
       {selected && (

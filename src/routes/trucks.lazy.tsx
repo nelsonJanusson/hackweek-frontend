@@ -31,20 +31,25 @@ function Trucks() {
   }, []);
 
   return (
-    <>
+    <div className="m-5">
       <AddTruckForm setTrucks={setUnassignedTrucks}></AddTruckForm>
-
-      <TruckGallery
-        title="Assigned Trucks"
-        trucks={assignedTrucks}
-        setTrucks={setAssignedTrucks}
-      ></TruckGallery>
-
-      <TruckGallery
-        title="Unassigned Trucks"
-        trucks={unassignedTrucks}
-        setTrucks={setUnassignedTrucks}
-      ></TruckGallery>
-    </>
+      <div className="flex">
+        {" "}
+        <div className="basis-1/2">
+          <TruckGallery
+            title="Assigned Trucks"
+            trucks={assignedTrucks}
+            setTrucks={setAssignedTrucks}
+          ></TruckGallery>
+        </div>
+        <data className="basis-1/2">
+          <TruckGallery
+            title="Unassigned Trucks"
+            trucks={unassignedTrucks}
+            setTrucks={setUnassignedTrucks}
+          ></TruckGallery>
+        </data>
+      </div>
+    </div>
   );
 }

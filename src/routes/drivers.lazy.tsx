@@ -31,20 +31,24 @@ function Drivers() {
   }, []);
 
   return (
-    <div>
+    <div className="m-5">
       <AddDriverForm setDrivers={setUnassignedDrivers}></AddDriverForm>
-
-      <DriverGallery
-        title="Assigned Drivers"
-        drivers={assignedDrivers}
-        setDrivers={setAssignedDrivers}
-      ></DriverGallery>
-
-      <DriverGallery
-        title="Unassigned Drivers"
-        drivers={unassignedDrivers}
-        setDrivers={setUnassignedDrivers}
-      ></DriverGallery>
+      <div className="flex">
+        <div className="basis-1/2">
+          <DriverGallery
+            title="Assigned Drivers"
+            drivers={assignedDrivers}
+            setDrivers={setAssignedDrivers}
+          ></DriverGallery>
+        </div>
+        <div className="basis-1/2">
+          <DriverGallery
+            title="Unassigned Drivers"
+            drivers={unassignedDrivers}
+            setDrivers={setUnassignedDrivers}
+          ></DriverGallery>
+        </div>
+      </div>
     </div>
   );
 }
