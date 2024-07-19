@@ -24,16 +24,16 @@ function Assignments() {
     <div className="flex m-5">
       <div className="basis-1/3">
         <AssignmentGallery
-          title="Active Assignments"
-          assignments={assignments.filter((e) => e.status == "Active")}
+          title="Unassigned Assignments"
+          assignments={assignments.filter((e) => e.status == "Unassigned")}
           setAssignments={setAssignments}
         ></AssignmentGallery>
       </div>
 
       <div className="basis-1/3">
         <AssignmentGallery
-          title="Unassigned Assignments"
-          assignments={assignments.filter((e) => e.status == "Unassigned")}
+          title="Active Assignments"
+          assignments={assignments.filter((e) => e.status == "Active")}
           setAssignments={setAssignments}
         ></AssignmentGallery>
       </div>
