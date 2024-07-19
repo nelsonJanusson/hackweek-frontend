@@ -92,11 +92,14 @@ export function DriverCard({
                 key={assignment.id}
               >
                 <h4>Assignment id: {assignment.id}</h4>
-                <h4>Asignment customer: {assignment.customerInfo.name}</h4>
+                <h4>
+                  Asignment customer:{" "}
+                  {assignment.customerInfo?.name ?? "unknown"}
+                </h4>
                 <h4>Product: {assignment.product}</h4>
                 <h4>Pickup: {assignment.pickupLocation}</h4>
                 <h4>Destination: {assignment.destination}</h4>
-                <h4>Truck Id: {assignment.truckInfo.id}</h4>
+                <h4>Truck Id: {assignment.truckInfo?.id ?? "unknown"}</h4>
                 <h4>legs:</h4>
                 {assignment.legs.map((leg: LegInfo) => (
                   <div className="button" key={leg.id}>
